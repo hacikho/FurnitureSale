@@ -24,17 +24,10 @@ namespace FurnitureSale.Controllers
         }
 
         [HttpPost]
-        public ActionResult NewProdcut(Product p)
+        public ActionResult NewProduct(Product p)
         {
             dal.SaveNewProduct(p);
             return RedirectToAction("Index", "Home");
         }
-        // GET: Products
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-
     }
 }

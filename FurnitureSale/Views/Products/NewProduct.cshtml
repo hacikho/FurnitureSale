@@ -9,22 +9,28 @@
 
 <form action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
-        @Html.LabelFor(m=>m.Name)
-        @Html.TextBoxFor(m=>m.Name, new { @class="form-control", placeholder = "enter name of the product"})
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "enter name of the product" })
     </div>
     <div class="form-group">
-        @Html.LabelFor(m=>m.Price)
-        @Html.TextAreaFor(m=>m.Price, new { @class="form-control", paceholder="enter the price"})
+        @Html.LabelFor(m => m.Price)
+        @Html.TextAreaFor(m => m.Price, new { @class = "form-control", paceholder = "enter the price" })
     </div>
     <div class="form-group">
-        @Html.LabelFor(m=>m.Description)
-        @Html.TextAreaFor(m=>m.Description, new { @class="form-control", rows="8"})
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m=>m.ImageName1)
-        <input type="file" name="productImage1" class="form-control-file" accept=".png, .jpg"/>
+        @Html.LabelFor(m => m.Description)
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "8" })
     </div>
 
-    <input type="submit" value="New" name="action:New"/>
-    
+    @*<div class="form-group">
+        @Html.LabelFor(m => m.CategoryID)
+        @Html.TextBoxFor(m => m.CategoryID, new { @class = "form-control", placeholder = "enter category id" })
+    </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ImageName1)
+        <input type="file" name="productImage1" class="form-control-file" accept=".png, .jpg" />
+    </div>
+
+    <input type="submit" value="New" name="action:NewProduct" />
+
 </form>

@@ -18,6 +18,7 @@ namespace FurnitureSale.Models
         public string ImageName1 { get; set; }
         public string ImageName2 { get; set; }
         public string ImageName3 { get; set; }
+        public int CategoryID { get; set; }
 
     }
 }

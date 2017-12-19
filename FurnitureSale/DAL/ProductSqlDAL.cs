@@ -12,17 +12,13 @@ namespace FurnitureSale.DAL
     {
         private string connectionString = ConfigurationManager.ConnectionStrings["FurnitureSaleDB"].ConnectionString;
         const string SQL_GetTop20Products = "SELECT TOP 20 products.* from products";
-        const string SQL_InsertNewProduct = "INSERT INTO product VALUES(@ProductName, @ProductPrice, @ProductDecription, @ProductImageName1, @ProductCategoryID)";
+        const string SQL_InsertNewProduct = "INSERT INTO products VALUES(@ProductName, @ProductPrice, @ProductDescription, @ProductImageName1, 1)";
 
         public Product GetProduct(int id)
         {
             throw new NotImplementedException();
         }
-
-        public void SaveNewProduct(Product p)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public List<Product> GetLast20Products()
         {
@@ -41,14 +37,14 @@ namespace FurnitureSale.DAL
                         p.Id = Convert.ToInt32(reader["ProductID"]);
                         p.Name = Convert.ToString(reader["ProductName"]);
                         p.Price = Convert.ToInt32(reader["ProductPrice"]);
-                        p.Weight = Convert.ToSingle(reader["ProductWeight"]);
-                        p.Quantity = Convert.ToInt32(reader["ProductQuantity"]);
-                        p.Dimension = Convert.ToString(reader["ProductDimension"]);
-                        p.Msrp = Convert.ToInt32(reader["ProductMsrp"]);
+                        //p.Weight = Convert.ToSingle(reader["ProductWeight"]);
+                        //p.Quantity = Convert.ToInt32(reader["ProductQuantity"]);
+                        //p.Dimension = Convert.ToString(reader["ProductDimension"]);
+                        //p.Msrp = Convert.ToInt32(reader["ProductMsrp"]);
                         p.Description = Convert.ToString(reader["ProductDescription"]);
-                        p.ImageName1 = Convert.ToString(reader["ProductImage1"]);
-                        p.ImageName2 = Convert.ToString(reader["ProductImage2"]);
-                        p.ImageName3 = Convert.ToString(reader["ProductImage3"]);
+                        p.ImageName1 = Convert.ToString(reader["ProductImageName1"]);
+                        //p.ImageName2 = Convert.ToString(reader["ProductImage2"]);
+                        //p.ImageName3 = Convert.ToString(reader["ProductImage3"]);
 
                         products.Add(p);
                     }
@@ -59,6 +55,36 @@ namespace FurnitureSale.DAL
                 throw;
             }
             return products;
+        }
+
+        public void SaveNewProduct(Product p)
+        {
+            try
+            {
+                using(SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(SQL_InsertNewProduct, conn);
+                    cmd.Parameters.AddWithValue("@ProductName", p.Name);
+                    cmd.Parameters.AddWithValue("@ProductPrice", p.Price);
+                    cmd.Parameters.AddWithValue("@ProductDescription", p.Description);
+                    if (String.IsNullOrEmpty(p.ImageName1))
+                    {
+                        cmd.Parameters.AddWithValue("@ProductImageName1", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@ProductImageName1", p.ImageName1);
+                    }
+                    cmd.Parameters.AddWithValue("@ProductCategoryID", p.CategoryID);
+
+                    cmd.ExecuteNonQuery();
+                    return;
+                }
+            }catch(SqlException ex)
+            {
+                throw;
+            }
         }
     }
 }

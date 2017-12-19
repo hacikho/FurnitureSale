@@ -19,7 +19,6 @@ namespace FurnitureSale.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            
             var products = dal.GetLast20Products();
             return View("Index", products);
         }
