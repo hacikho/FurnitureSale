@@ -12,11 +12,40 @@ namespace FurnitureSale.DAL
     {
         private string connectionString = ConfigurationManager.ConnectionStrings["FurnitureSaleDB"].ConnectionString;
         const string SQL_GetTop20Products = "SELECT TOP 20 products.* from products";
-        const string SQL_InsertNewProduct = "INSERT INTO products VALUES(@ProductName, @ProductPrice, @ProductDescription, @ProductImageName1, 1)";
+        const string SQL_InsertNewProduct = "INSERT INTO products VALUES(@ProductName, @ProductPrice, @ProductDescription, @ProductImageName1, @ProductCategoryID)";
+        const string SQL_GetProductById = "SELECT products.*, productcategories.* FROM products JOIN productcategories ON products.ProductCategoryID = productcategories.CategoryID WHERE products.ProductID =@id";
 
         public Product GetProduct(int id)
         {
-            throw new NotImplementedException();
+            Product product = null;
+
+            try
+            {
+                using(SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(SQL_GetProductById, conn);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        Product p = new Product();
+                        p.Id = Convert.ToInt32(reader["ProductID"]);
+                        p.Name = Convert.ToString(reader["ProductName"]);
+                        p.Price = Convert.ToDecimal(reader["ProductPrice"]);
+                        p.Description = Convert.ToString(reader["ProductDescription"]);
+                        p.ImageName1 = Convert.ToString(reader["ProductImageName1"]);
+
+                        product = p;
+                    }
+                }
+            }catch(SqlException ex)
+            {
+                throw;
+            }
+            return product;
         }
         
 
@@ -36,7 +65,7 @@ namespace FurnitureSale.DAL
                         Product p = new Product();
                         p.Id = Convert.ToInt32(reader["ProductID"]);
                         p.Name = Convert.ToString(reader["ProductName"]);
-                        p.Price = Convert.ToInt32(reader["ProductPrice"]);
+                        p.Price = Convert.ToDecimal(reader["ProductPrice"]);
                         //p.Weight = Convert.ToSingle(reader["ProductWeight"]);
                         //p.Quantity = Convert.ToInt32(reader["ProductQuantity"]);
                         //p.Dimension = Convert.ToString(reader["ProductDimension"]);

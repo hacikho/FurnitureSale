@@ -21,16 +21,17 @@
         @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "8" })
     </div>
 
-    @*<div class="form-group">
+    <div class="form-group">
         @Html.LabelFor(m => m.CategoryID)
         @Html.TextBoxFor(m => m.CategoryID, new { @class = "form-control", placeholder = "enter category id" })
-    </div>*@
+
+    </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.ImageName1)
-        <input type="file" name="productImage1" class="form-control-file" accept=".png, .jpg" />
+        <input type="file" name="productImage" class="form-control-file" accept=".png, .jpg" />
     </div>
 
-    <input type="submit" value="New" name="action:NewProduct" />
+    <input type="submit" value="Save" name="action:NewProduct" />
 
 </form>

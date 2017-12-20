@@ -1,35 +1,47 @@
 ﻿@using FurnitureSale.Models;
 @model List<Product>
-    
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
-@if(Model.Count == 0)
+@if (Model.Count == 0)
 {
     <p>No product have been added yet</p>
 }
 else
 {
     <div class="container-fluid">
-        <div class="product row">
+        <div class="recipes row">
             <div id="columns" data-columns="">
-                @foreach(Product p in Model)
+                @foreach (Product p in Model)
                 {
-                    <div class="panel panel-default" style="min-height:300px">
+                    <div class="panel panel-default" style="min-height:200px; max-height:300px;">
                         <div class="panel-heading">
                             <h3>@p.Name</h3>
                         </div>
                         <div class="panel-body">
-                            <p style="margin-top:10px;">@p.Description</p>
-                            <img class="img-responsive" src="" alt="p.Name"/>
+
+                            <a href="@Url.Action("Detail", "Products", new { id=p.Id})">
+                                @if (!String.IsNullOrEmpty(p.ImageName1))
+                                {
+                                    <img class="img-responsive" src="@Url.Content("~/images/"+p.ImageName1)" alt="@p.ImageName1" />
+
+                                }
+                                else
+                                {
+                                    <img class="img-responsive" src="@Url.Content("~/images/no_image_available.svg")" alt="@p.Name" />
+                                }
+
+                            </a>
+                            <p class="h3 text-muted" style="margin-top:10px;">$@p.Price</p>
                         </div>
                     </div>
                 }
             </div>
         </div>
     </div>
-    
+
 }
 

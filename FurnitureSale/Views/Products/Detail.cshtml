@@ -1,0 +1,21 @@
+﻿@using FurnitureSale.Models;
+@model Product
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<h2>Detail</h2>
+<div id="detail">
+    <h3>@Model.Name</h3>
+    @if (!String.IsNullOrEmpty(Model.ImageName1))
+    {
+        <img class="img-responsive" src="@Url.Content("~/images/" + Model.ImageName1)" alt="@Model.Name"/>
+    }
+    else
+    {
+        <img class="img-responsive" src="@Url.Content("~/images/no_image_available.svg")" alt="@Model.Name"/>
+    }
+    <p class="text-muted">@Model.Description</p>
+    
+</div>
+
