@@ -10,7 +10,7 @@ using System.Web.Helpers;
 
 namespace FurnitureSale.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductsController : BaseController
     {
         private IProductDAL dal;
         public ProductsController(IProductDAL dal)
@@ -21,7 +21,15 @@ namespace FurnitureSale.Controllers
         [HttpGet]
         public ActionResult NewProduct()
         {
-            return View("NewProduct");
+            if(SharedSession["UserName"] == "Admin")
+            {
+                return View("NewProduct");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
         }
 
         [HttpPost]

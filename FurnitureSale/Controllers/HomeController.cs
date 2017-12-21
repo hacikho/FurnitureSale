@@ -7,7 +7,7 @@ using FurnitureSale.DAL;
 
 namespace FurnitureSale.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private IProductDAL dal;
         public HomeController(IProductDAL dal)

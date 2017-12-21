@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace FurnitureSale.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : BaseController
     {
         // GET: Login
         public ActionResult AdminLogin()
@@ -22,7 +22,7 @@ namespace FurnitureSale.Controllers
             string pwd = frmc["Password"];
             if(name=="Admin" && pwd ==  "password")
             {
-                Session["UserName"] = "Admin";
+                this.SharedSession["UserName"] = "Admin";
                 return View("NewProduct");
             }
             else
