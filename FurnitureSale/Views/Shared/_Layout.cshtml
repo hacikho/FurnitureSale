@@ -18,7 +18,12 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-              
+                @if (Session["Username"] != null)
+                {
+                    <span class="admin">Welcome @Session["UserName"].ToString();</span>
+                    <span class="admin">@Html.ActionLink("Log Out", "logout", "Login")</span>
+
+                }
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav"></ul>

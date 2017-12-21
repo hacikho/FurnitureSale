@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "AdminLogin";
+}
+
+<h2>AdminLogin</h2>
+
+@*<form action="" method="POST">
+    Username: <input type="text" name="username"><br />
+    Password: <input type="text" name="password"> <br />
+    <input type="submit" value="Login" name="action:NewProduct" />
+</form>*@
+
+@using (Html.BeginForm("AdminLogin", "Login", FormMethod.Post, new { id = "form1" }))
+{
+    <table>
+        <tr>
+            <td>
+                UserName:
+            </td>
+            <td>
+                @Html.TextBox("userName")
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Password
+            </td>
+            <td>
+                @Html.Password("Password")
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="login" name="login" />
+            </td>
+        </tr>
+    </table>
+}

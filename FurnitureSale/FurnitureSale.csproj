@@ -120,11 +120,12 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\salvattore.min.js" />
     <Content Include="Web.config" />
-    <Content Include="Views\Products\NewProduct.cshtml" />
+    <Content Include="Views\Shared\NewProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="DAL\IProductDAL.cs" />
     <Compile Include="DAL\ProductSqlDAL.cs" />
@@ -145,7 +146,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Products\Detail.cshtml" />
-    <Content Include="Views\AdminLogin.cshtml" />
+    <Content Include="Views\Login\AdminLogin.cshtml" />
+    <Content Include="Views\Login\Logout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
