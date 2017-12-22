@@ -149,6 +149,7 @@
     <Content Include="Views\Products\Detail.cshtml" />
     <Content Include="Views\Login\AdminLogin.cshtml" />
     <Content Include="Views\Login\Logout.cshtml" />
+    <Content Include="Views\Products\EditProduct.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

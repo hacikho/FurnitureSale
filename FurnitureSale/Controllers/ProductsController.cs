@@ -12,6 +12,7 @@ namespace FurnitureSale.Controllers
 {
     public class ProductsController : BaseController
     {
+        Product newProduct = new Product();
         private IProductDAL dal;
         public ProductsController(IProductDAL dal)
         {
@@ -58,6 +59,20 @@ namespace FurnitureSale.Controllers
                 return HttpNotFound();
             }
             return View("Detail", p);
+        }
+
+        [HttpGet]
+        public ActionResult EditProduct(int id = 1)
+        {
+            newProduct = dal.GetProduct(id);
+            return View("EditProduct", newProduct);
+        }
+
+        [HttpPost]
+        public ActionResult EditProduct(Product productToEdit)
+        {
+            dal.EditProduct(productToEdit.Id, productToEdit);
+            return RedirectToAction("Index", "Home");
         }
     } 
 }

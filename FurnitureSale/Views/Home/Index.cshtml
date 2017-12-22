@@ -6,42 +6,89 @@
 }
 
 <h2>Index</h2>
+
+
 @if (Model.Count == 0)
 {
     <p>No product have been added yet</p>
 }
 else
 {
-    <div class="container-fluid">
-        <div class="recipes row">
-            <div id="columns" data-columns="">
-                @foreach (Product p in Model)
-                {
-                    <div class="panel panel-default" style="min-height:200px; max-height:300px;">
-                        <div class="panel-heading">
-                            <h3>@p.Name</h3>
+    if (Session["UserName"] == "Admin")
+    {
+        <div class="container-fluid">
+            <div class="recipes row">
+                <div id="columns" data-columns="">
+                    @foreach (Product p in Model)
+                    {
+                        <div class="panel panel-default" style="min-height:200px; max-height:300px;">
+                            <div class="panel-heading">
+                                <h3>@p.Name</h3>
+                            </div>
+                            <div class="panel-body">
+
+                                <a href="@Url.Action("Detail", "Products", new { id=p.Id})">
+                                    @if (!String.IsNullOrEmpty(p.ImageName1))
+                                    {
+                                        <img class="img-responsive" src="@Url.Content("~/images/"+p.ImageName1)" alt="@p.ImageName1" />
+
+                                    }
+                                    else
+                                    {
+                                        <img class="img-responsive" src="@Url.Content("~/images/no_image_available.svg")" alt="@p.Name" />
+                                    }
+
+                                </a>
+                                <p class="h3 text-muted" style="margin-top:10px;">$@p.Price</p>
+                                <div class="fl-left">
+                                    <a class="text-center" href="@Url.Action("EditProduct", "Products", new { id = p.Id })"><span><button type="button" class="btn">Edit</button></span></a>
+                                    Allows card creator to edit card details or allows user to add to thier own deck for above card.
+                                </div>
+                            </div>
                         </div>
-                        <div class="panel-body">
-
-                            <a href="@Url.Action("Detail", "Products", new { id=p.Id})">
-                                @if (!String.IsNullOrEmpty(p.ImageName1))
-                                {
-                                    <img class="img-responsive" src="@Url.Content("~/images/"+p.ImageName1)" alt="@p.ImageName1" />
-
-                                }
-                                else
-                                {
-                                    <img class="img-responsive" src="@Url.Content("~/images/no_image_available.svg")" alt="@p.Name" />
-                                }
-
-                            </a>
-                            <p class="h3 text-muted" style="margin-top:10px;">$@p.Price</p>
-                        </div>
-                    </div>
-                }
+                    }
+                </div>
             </div>
         </div>
-    </div>
+    }
+    else
+    {
+        <div class="container-fluid">
+            <div class="recipes row">
+                <div id="columns" data-columns="">
+                    @foreach (Product p in Model)
+                    {
+                        <div class="panel panel-default" style="min-height:200px; max-height:300px;">
+                            <div class="panel-heading">
+                                <h3>@p.Name</h3>
+                            </div>
+                            <div class="panel-body">
+
+                                <a href="@Url.Action("Detail", "Products", new { id=p.Id})">
+                                    @if (!String.IsNullOrEmpty(p.ImageName1))
+                                    {
+                                        <img class="img-responsive" src="@Url.Content("~/images/"+p.ImageName1)" alt="@p.ImageName1" />
+
+                                    }
+                                    else
+                                    {
+                                        <img class="img-responsive" src="@Url.Content("~/images/no_image_available.svg")" alt="@p.Name" />
+                                    }
+
+                                </a>
+                                <p class="h3 text-muted" style="margin-top:10px;">$@p.Price</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+
+
 
 }
 

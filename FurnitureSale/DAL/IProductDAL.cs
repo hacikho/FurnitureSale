@@ -12,6 +12,7 @@ namespace FurnitureSale.DAL
         List<Product> GetLast20Products();
         void SaveNewProduct(Product p);
         Product GetProduct(int id);
+        int EditProduct(int id, Product productToEdit);
     }
 }
 

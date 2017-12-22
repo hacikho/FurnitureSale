@@ -5,6 +5,7 @@ using System.Web;
 using FurnitureSale.Models;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace FurnitureSale.DAL
 {
@@ -14,6 +15,7 @@ namespace FurnitureSale.DAL
         const string SQL_GetTop20Products = "SELECT TOP 20 products.* from products";
         const string SQL_InsertNewProduct = "INSERT INTO products VALUES(@ProductName, @ProductPrice, @ProductDescription, @ProductImageName1, @ProductCategoryID)";
         const string SQL_GetProductById = "SELECT products.*, productcategories.* FROM products JOIN productcategories ON products.ProductCategoryID = productcategories.CategoryID WHERE products.ProductID =@id";
+        const string SQL_EditProduct = "UPDATE products set ProductName = @ProductName, ProductPrice = @ProductPrice, ProductDescription = @ProductDescription, ProductImageName1 = @ProductImageName1, ProductCategoryID = @ProductCategoryID WHERE ProductID = @ProductID";
 
         public Product GetProduct(int id)
         {
@@ -37,6 +39,7 @@ namespace FurnitureSale.DAL
                         p.Price = Convert.ToDecimal(reader["ProductPrice"]);
                         p.Description = Convert.ToString(reader["ProductDescription"]);
                         p.ImageName1 = Convert.ToString(reader["ProductImageName1"]);
+                        p.CategoryID = Convert.ToInt32(reader["ProductCategoryID"]);
 
                         product = p;
                     }
@@ -48,7 +51,6 @@ namespace FurnitureSale.DAL
             return product;
         }
         
-
         public List<Product> GetLast20Products()
         {
             List<Product> products = new List<Product>();
@@ -115,5 +117,46 @@ namespace FurnitureSale.DAL
                 throw;
             }
         }
+
+        public int EditProduct(int productToEdit, Product EditedProduct)
+          {
+            Product newProduct = GetProduct(EditedProduct.Id);
+            newProduct.Name = EditedProduct.Name;
+            newProduct.Price = EditedProduct.Price;
+            newProduct.Description = EditedProduct.Description;
+            newProduct.ImageName1 = EditedProduct.ImageName1;
+            newProduct.CategoryID = EditedProduct.CategoryID;
+
+            try
+            {
+                using(SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(SQL_EditProduct, conn);
+                    cmd.Parameters.AddWithValue("@ProductName", newProduct.Name);
+                    cmd.Parameters.AddWithValue("@ProductPrice", newProduct.Price);
+                    cmd.Parameters.AddWithValue("@ProductDescription", newProduct.Description);
+                    
+                    if(newProduct.ImageName1 == null)
+                    {
+                        cmd.Parameters.AddWithValue("@ProductImageName1", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@ProductImageName1", newProduct.ImageName1);
+                    }
+                    //cmd.Parameters.AddWithValue("@ProductImageName1", newProduct.ImageName1);
+                    cmd.Parameters.AddWithValue("@ProductCategoryID", newProduct.CategoryID);
+                    cmd.Parameters.AddWithValue("@ProductID", productToEdit);
+                    cmd.ExecuteNonQuery();
+                }
+            }catch(SqlException ex)
+            {
+                throw ex;
+            }
+            return newProduct.Id;
+        }
+
+        
     }
 }
