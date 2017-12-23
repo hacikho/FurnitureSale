@@ -69,9 +69,20 @@ namespace FurnitureSale.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditProduct(Product productToEdit)
+        public ActionResult EditProduct(Product productToEdit, HttpPostedFileBase productImage)
         {
-            dal.EditProduct(productToEdit.Id, productToEdit);
+            //dal.EditProduct(productToEdit.Id, productToEdit);
+            if (productImage != null)
+            {
+                string extension = Path.GetExtension(productImage.FileName);
+                string filename = Guid.NewGuid() + extension;
+
+                string placeToSaveIt = Path.Combine(Server.MapPath("~/images/"), filename);
+
+                productImage.SaveAs(placeToSaveIt);
+                productToEdit.ImageName1 = filename;
+            }
+            dal.EditProduct(productToEdit);
             return RedirectToAction("Index", "Home");
         }
     } 

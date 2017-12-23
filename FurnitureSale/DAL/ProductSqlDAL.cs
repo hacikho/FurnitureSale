@@ -117,15 +117,15 @@ namespace FurnitureSale.DAL
                 throw;
             }
         }
-
-        public int EditProduct(int productToEdit, Product EditedProduct)
+          
+        public int EditProduct(Product EditedProduct)
           {
-            Product newProduct = GetProduct(EditedProduct.Id);
-            newProduct.Name = EditedProduct.Name;
-            newProduct.Price = EditedProduct.Price;
-            newProduct.Description = EditedProduct.Description;
-            newProduct.ImageName1 = EditedProduct.ImageName1;
-            newProduct.CategoryID = EditedProduct.CategoryID;
+            //Product newProduct = GetProduct(EditedProduct.Id);
+            //newProduct.Name = EditedProduct.Name;
+            //newProduct.Price = EditedProduct.Price;
+            //newProduct.Description = EditedProduct.Description;
+            //newProduct.ImageName1 = EditedProduct.ImageName1;
+            //newProduct.CategoryID = EditedProduct.CategoryID;
 
             try
             {
@@ -133,28 +133,48 @@ namespace FurnitureSale.DAL
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(SQL_EditProduct, conn);
-                    cmd.Parameters.AddWithValue("@ProductName", newProduct.Name);
-                    cmd.Parameters.AddWithValue("@ProductPrice", newProduct.Price);
-                    cmd.Parameters.AddWithValue("@ProductDescription", newProduct.Description);
-                    
-                    if(newProduct.ImageName1 == null)
+
+                    cmd.Parameters.AddWithValue("@ProductName", EditedProduct.Name);
+                    cmd.Parameters.AddWithValue("@ProductPrice", EditedProduct.Price);
+                    cmd.Parameters.AddWithValue("@ProductDescription", EditedProduct.Description);
+
+                    if (EditedProduct.ImageName1 == null)
                     {
                         cmd.Parameters.AddWithValue("@ProductImageName1", DBNull.Value);
                     }
                     else
                     {
-                        cmd.Parameters.AddWithValue("@ProductImageName1", newProduct.ImageName1);
+                        cmd.Parameters.AddWithValue("@ProductImageName1", EditedProduct.ImageName1);
                     }
                     //cmd.Parameters.AddWithValue("@ProductImageName1", newProduct.ImageName1);
-                     cmd.Parameters.AddWithValue("@ProductCategoryID", newProduct.CategoryID);
-                    cmd.Parameters.AddWithValue("@ProductID", productToEdit);
+                    cmd.Parameters.AddWithValue("@ProductCategoryID", EditedProduct.CategoryID);
+                    cmd.Parameters.AddWithValue("@ProductID", EditedProduct.Id);
+
+
+
+                    //cmd.Parameters.AddWithValue("@ProductName", newProduct.Name);
+                    //cmd.Parameters.AddWithValue("@ProductPrice", newProduct.Price);
+                    //cmd.Parameters.AddWithValue("@ProductDescription", newProduct.Description);
+
+                    //if (newProduct.ImageName1 == null)
+                    //{
+                    //    cmd.Parameters.AddWithValue("@ProductImageName1", DBNull.Value);
+                    //}
+                    //else
+                    //{
+                    //    cmd.Parameters.AddWithValue("@ProductImageName1", newProduct.ImageName1);
+                    //}
+                    ////cmd.Parameters.AddWithValue("@ProductImageName1", newProduct.ImageName1);
+                    // cmd.Parameters.AddWithValue("@ProductCategoryID", newProduct.CategoryID);
+                    //cmd.Parameters.AddWithValue("@ProductID", newProduct.Id);
                     cmd.ExecuteNonQuery();
                 }
             }catch(SqlException ex)
             {
                 throw ex;
             }
-            return newProduct.Id;
+            //return newProduct.Id;
+            return EditedProduct.Id;
         }
 
         
