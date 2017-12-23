@@ -146,7 +146,7 @@ namespace FurnitureSale.DAL
                         cmd.Parameters.AddWithValue("@ProductImageName1", newProduct.ImageName1);
                     }
                     //cmd.Parameters.AddWithValue("@ProductImageName1", newProduct.ImageName1);
-                    cmd.Parameters.AddWithValue("@ProductCategoryID", newProduct.CategoryID);
+                     cmd.Parameters.AddWithValue("@ProductCategoryID", newProduct.CategoryID);
                     cmd.Parameters.AddWithValue("@ProductID", productToEdit);
                     cmd.ExecuteNonQuery();
                 }
