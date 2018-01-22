@@ -23,7 +23,8 @@ namespace FurnitureSale.Controllers
             if(name=="Admin" && pwd ==  "password")
             {
                 this.SharedSession["UserName"] = "Admin";
-                return View("NewProduct");
+                //Changes
+                return RedirectToAction("NewProduct", "Products");
             }
             else
             {
