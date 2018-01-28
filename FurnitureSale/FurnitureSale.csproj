@@ -151,6 +151,11 @@
     <Content Include="Views\Login\AdminLogin.cshtml" />
     <Content Include="Views\Login\Logout.cshtml" />
     <Content Include="Views\Products\EditProduct.cshtml" />
+    <Content Include="Views\Home\LivingRoom.cshtml" />
+    <Content Include="Views\Home\BedRoom.cshtml" />
+    <Content Include="Views\Home\DiningRoom.cshtml" />
+    <Content Include="Views\Home\Kitchen.cshtml" />
+    <Content Include="Views\Home\BabiesKids.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

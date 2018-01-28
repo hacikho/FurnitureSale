@@ -22,14 +22,19 @@
                     <li>
                         <div>
                             @Html.ActionLink("Ali's Furniture Deals", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("Living Room", "LivingRoom", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("BedRoom", "BedRoom", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("Dining Room", "DiningRoom", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("Kitchen", "Kitchen", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("BabiesKids", "BabiesKids", "Home", new { area = "" }, new { @class = "navbar-brand" })
 
 
                             <!--<div class="admin">-->
                             @if (Session["Username"] != null)
                             {
                                 @*<span class="navbar-brand">
-                                    @Session["UserName"].ToString();
-                                </span>*@
+                                        @Session["UserName"].ToString();
+                                    </span>*@
                                 <span class="navbar-brand">
                                     @Html.ActionLink("Log Out", "logout", "Login")
                                 </span>
