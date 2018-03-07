@@ -27,40 +27,40 @@ namespace FurnitureSale.Controllers
         [HttpGet]
         public ActionResult LivingRoom()
         {
-            //var products = dal.GetLast20Products();
-            return View("LivingRoom");
+            var products = dal.GetLivingRoomProducts();
+            return View("LivingRoom", products);
         }
 
         // GET: BedRoom
         [HttpGet]
         public ActionResult BedRoom()
         {
-            //var products = dal.GetLast20Products();
-            return View("BedRoom");
+            var products = dal.GetBedRoomProducts();
+            return View("BedRoom", products);
         }
 
         // GET: DiningRoom
         [HttpGet]
         public ActionResult DiningRoom()
         {
-            //var products = dal.GetLast20Products();
-            return View("DiningRoom");
+            var products = dal.GetDiningRoomProducts();
+            return View("DiningRoom",products);
         }
 
-        // GET: Kitchen
-        [HttpGet]
-        public ActionResult Kitchen()
-        {
-            //var products = dal.GetLast20Products();
-            return View("Kitchen");
-        }
-
-        // GET: Kitchen
+        // GET: BabiesKids
         [HttpGet]
         public ActionResult BabiesKids()
         {
-            //var products = dal.GetLast20Products();
-            return View("BabiesKids");
+            var products = dal.GetBabiesKidsProducts();
+            return View("BabiesKids", products);
+        }
+
+        // get: kitchen
+        [HttpGet]
+        public ActionResult Kitchen()
+        {
+            var products = dal.GetKitchenProducts();
+            return View("Kitchen", products);
         }
 
 

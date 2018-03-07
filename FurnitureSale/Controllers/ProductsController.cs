@@ -34,7 +34,7 @@ namespace FurnitureSale.Controllers
         }
 
         [HttpPost]
-        public ActionResult NewProduct(Product p, HttpPostedFileBase productImage)
+        public ActionResult NewProduct(Product p, HttpPostedFileBase productImage, HttpPostedFileBase productImage2, HttpPostedFileBase productImage3)
         {
             if(productImage != null)
             {
@@ -45,6 +45,30 @@ namespace FurnitureSale.Controllers
 
                 productImage.SaveAs(placeToSaveIt);
                 p.ImageName1 = filename;
+            }
+
+            //second image
+            if (productImage2 != null)
+            {
+                string extension = Path.GetExtension(productImage2.FileName);
+                string filename = Guid.NewGuid() + extension;
+
+                string placeToSaveIt = Path.Combine(Server.MapPath("~/images/"), filename);
+
+                productImage2.SaveAs(placeToSaveIt);
+                p.ImageName2 = filename;
+            }
+
+            //third image
+            if (productImage3 != null)
+            {
+                string extension = Path.GetExtension(productImage3.FileName);
+                string filename = Guid.NewGuid() + extension;
+
+                string placeToSaveIt = Path.Combine(Server.MapPath("~/images/"), filename);
+
+                productImage3.SaveAs(placeToSaveIt);
+                p.ImageName3 = filename;
             }
 
             dal.SaveNewProduct(p);
@@ -85,5 +109,7 @@ namespace FurnitureSale.Controllers
             dal.EditProduct(productToEdit);
             return RedirectToAction("Index", "Home");
         }
+
+        
     } 
 }

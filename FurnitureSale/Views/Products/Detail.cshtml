@@ -7,15 +7,36 @@
 <h2>Detail</h2>
 <div id="detail">
     <h3>@Model.Name</h3>
+    @*First Image*@
     @if (!String.IsNullOrEmpty(Model.ImageName1))
     {
-        <img class="img-responsive" src="@Url.Content("~/images/" + Model.ImageName1)" alt="@Model.Name"/>
+        <img class="img-responsive" src="@Url.Content("~/images/" + Model.ImageName1)" alt="@Model.Name" />
     }
     else
     {
-        <img class="img-responsive" src="@Url.Content("~/images/no_image_available.svg")" alt="@Model.Name"/>
+        <img class="img-responsive" src="@Url.Content("~/images/no_image_available.svg")" alt="@Model.Name" />
+    }
+
+    @*Second Image*@
+    @if (!String.IsNullOrEmpty(Model.ImageName2))
+    {
+        <img class="img-responsive" src="@Url.Content("~/images/" + Model.ImageName2)" alt="@Model.Name" />
+    }
+    else
+    {
+        <img class="img-responsive" src="@Url.Content("~/images/no_image_available.svg")" alt="@Model.Name" />
+    }
+
+    @*Third Image*@
+    @if (!String.IsNullOrEmpty(Model.ImageName3 ))
+    {
+        <img class="img-responsive" src="@Url.Content("~/images/" + Model.ImageName3)" alt="@Model.Name" />
+    }
+    else
+    {
+        <img class="img-responsive" src="@Url.Content("~/images/no_image_available.svg")" alt="@Model.Name" />
     }
     <p class="text-muted">@Model.Description</p>
-    
+
 </div>
 

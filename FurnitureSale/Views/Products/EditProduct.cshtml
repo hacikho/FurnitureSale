@@ -30,6 +30,12 @@
     <div class="form-group">
         @Html.LabelFor(m => m.ImageName1)
         <input type="file" name="productImage" class="form-control-file" accept=".png, .jpg" />
+
+        @Html.LabelFor(m => m.ImageName2)
+        <input type="file" name="productImage" class="form-control-file" accept=".png, .jpg" />
+
+        @Html.LabelFor(m => m.ImageName3)
+        <input type="file" name="productImage" class="form-control-file" accept=".png, .jpg" />
     </div>
 
     <input type="submit" value="Save" name="action:NewProduct" />

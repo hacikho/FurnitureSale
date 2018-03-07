@@ -37,6 +37,7 @@ else
                     <div class="product-info">
                         <h5>@p.Name</h5>
                         <h4>@p.Price.ToString("0.00")</h4>
+                        <h4>@p.Id</h4>
                     </div>
                     <div class="fl-left">
                         <a class="text-center" href="@Url.Action("EditProduct", "Products", new { id = p.Id })"><span><button type="button" class="btn">Edit</button></span></a>
@@ -70,6 +71,7 @@ else
                     <div class="product-info">
                         <h5>@p.Name</h5>
                         <h4>@p.Price.ToString("0.00")</h4>
+                        <h4>@p.CategoryID</h4>
                     </div>
                 </div>
             }
