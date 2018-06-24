@@ -13,9 +13,10 @@ namespace FurnitureSale.DAL
     {
         private string connectionString = ConfigurationManager.ConnectionStrings["FurnitureSaleDB"].ConnectionString;
         const string SQL_GetTop20Products = "SELECT TOP 20 products.* from products";
-        const string SQL_InsertNewProduct = "INSERT INTO products VALUES(@ProductName, @ProductPrice, @ProductDescription, @ProductImageName1, @ProductImageName2, @ProductImageName3, @ProductCategoryID)";
+        const string SQL_InsertNewProduct = "INSERT INTO products VALUES(@ProductName, @ProductPrice, @ProductDescription, @ProductImageName1, @ProductImageName2, @ProductImageName3, @ProductCategoryID, @ProductQuantity)";
         const string SQL_GetProductById = "SELECT products.*, productcategories.* FROM products JOIN productcategories ON products.ProductCategoryID = productcategories.CategoryID WHERE products.ProductID =@id";
-        const string SQL_EditProduct = "UPDATE products set ProductName = @ProductName, ProductPrice = @ProductPrice, ProductDescription = @ProductDescription, ProductImageName1 = @ProductImageName1, ProductCategoryID = @ProductCategoryID WHERE ProductID = @ProductID";
+        const string SQL_EditProduct = "UPDATE products set ProductName = @ProductName, ProductPrice = @ProductPrice, ProductDescription = @ProductDescription, ProductImageName1 = @ProductImageName1, ProductCategoryID = @ProductCategoryID, " +
+            "ProductQuantity = @ProductQuantity WHERE ProductID = @ProductID";
         const string SQL_GetLivingRoomProducts = "SELECT products.* FROM products WHERE products.ProductCategoryID = 1";
         const string SQL_GetBedRoomProducts = "SELECT products.* FROM products WHERE products.ProductCategoryID = 2";
         const string SQL_GetDiningRoomProducts = "SELECT products.* FROM products WHERE products.ProductCategoryID = 3";
@@ -50,7 +51,7 @@ namespace FurnitureSale.DAL
                         p.ImageName2 = Convert.ToString(reader["ProductImageName2"]);
                         p.ImageName3 = Convert.ToString(reader["ProductImageName3"]);
                         p.CategoryID = Convert.ToInt32(reader["ProductCategoryID"]);
-
+                        p.Quantity = Convert.ToInt32(reader["ProductQuantity"]);
                         product = p;
                     }
                 }
@@ -82,6 +83,8 @@ namespace FurnitureSale.DAL
                         p.ImageName2 = Convert.ToString(reader["ProductImageName2"]);
                         p.ImageName3 = Convert.ToString(reader["ProductImageName3"]);
                         p.CategoryID = Convert.ToInt32(reader["ProductCategoryID"]);
+                        p.Quantity = Convert.ToInt32(reader["ProductQuantity"]);
+
                         products.Add(p);
                     }
                 }
@@ -115,6 +118,8 @@ namespace FurnitureSale.DAL
                         p.ImageName2 = Convert.ToString(reader["ProductImageName2"]);
                         p.ImageName3 = Convert.ToString(reader["ProductImageName3"]);
                         p.CategoryID = Convert.ToInt32(reader["ProductCategoryID"]);
+                        p.Quantity = Convert.ToInt32(reader["ProductQuantity"]);
+
                         products.Add(p);
                     }
                 }
@@ -149,6 +154,8 @@ namespace FurnitureSale.DAL
                         p.ImageName2 = Convert.ToString(reader["ProductImageName2"]);
                         p.ImageName3 = Convert.ToString(reader["ProductImageName3"]);
                         p.CategoryID = Convert.ToInt32(reader["ProductCategoryID"]);
+                        p.Quantity = Convert.ToInt32(reader["ProductQuantity"]);
+
                         products.Add(p);
                     }
                 }
@@ -182,6 +189,8 @@ namespace FurnitureSale.DAL
                         p.ImageName2 = Convert.ToString(reader["ProductImageName2"]);
                         p.ImageName3 = Convert.ToString(reader["ProductImageName3"]);
                         p.CategoryID = Convert.ToInt32(reader["ProductCategoryID"]);
+                        p.Quantity = Convert.ToInt32(reader["ProductQuantity"]);
+
                         products.Add(p);
                     }
                 }
@@ -215,6 +224,8 @@ namespace FurnitureSale.DAL
                         p.ImageName2 = Convert.ToString(reader["ProductImageName2"]);
                         p.ImageName3 = Convert.ToString(reader["ProductImageName3"]);
                         p.CategoryID = Convert.ToInt32(reader["ProductCategoryID"]);
+                        p.Quantity = Convert.ToInt32(reader["ProductQuantity"]);
+
                         products.Add(p);
                     }
                 }
@@ -253,6 +264,8 @@ namespace FurnitureSale.DAL
                         //p.ImageName2 = Convert.ToString(reader["ProductImage2"]);
                         //p.ImageName3 = Convert.ToString(reader["ProductImage3"]);
                         p.CategoryID = Convert.ToInt32(reader["ProductCategoryID"]);
+                        p.Quantity = Convert.ToInt32(reader["ProductQuantity"]);
+
 
                         products.Add(p);
                     }
@@ -304,6 +317,8 @@ namespace FurnitureSale.DAL
                         cmd.Parameters.AddWithValue("@ProductImageName3", p.ImageName3);
                     }
                     cmd.Parameters.AddWithValue("@ProductCategoryID", p.CategoryID);
+
+                    cmd.Parameters.AddWithValue("@ProductQuantity", p.Quantity);
 
                     cmd.ExecuteNonQuery();
                     return;
@@ -366,6 +381,7 @@ namespace FurnitureSale.DAL
                     //cmd.Parameters.AddWithValue("@ProductImageName1", newProduct.ImageName1);
                     cmd.Parameters.AddWithValue("@ProductCategoryID", EditedProduct.CategoryID);
                     cmd.Parameters.AddWithValue("@ProductID", EditedProduct.Id);
+                    cmd.Parameters.AddWithValue("ProductQuantity", EditedProduct.Quantity);
 
 
 

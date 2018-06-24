@@ -35,9 +35,10 @@ else
                         </a>
                     </div>
                     <div class="product-info">
-                        <h5>@p.Name</h5>
-                        <h4>@p.Price.ToString("0.00")</h4>
-                        <h4>@p.Id</h4>
+                        <h5>Product Name:@p.Name</h5>
+                        <h4>Product Price:@p.Price.ToString("0.00")</h4>
+                        <h4>Product Category ID:@p.CategoryID //This is for devs</h4>
+                        <h4>Product Quantity:@p.Quantity</h4>
                     </div>
                     <div class="fl-left">
                         <a class="text-center" href="@Url.Action("EditProduct", "Products", new { id = p.Id })"><span><button type="button" class="btn">Edit</button></span></a>
@@ -69,9 +70,10 @@ else
                         </a>
                     </div>
                     <div class="product-info">
-                        <h5>@p.Name</h5>
-                        <h4>@p.Price.ToString("0.00")</h4>
-                        <h4>@p.CategoryID</h4>
+                        <h5>Product Name:@p.Name</h5>
+                        <h4>Product Price:@p.Price.ToString("0.00")</h4>
+                        <h4>Product Category ID:@p.CategoryID //This is for devs</h4>
+                        <h4>Product Quantity:@p.Quantity</h4>
                     </div>
                 </div>
             }

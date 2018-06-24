@@ -24,7 +24,7 @@ namespace FurnitureSale.Controllers
             {
                 this.SharedSession["UserName"] = "Admin";
                 //Changes
-                return RedirectToAction("NewProduct", "Products");
+                return RedirectToAction("Index", controllerName: "Home");
             }
             else
             {

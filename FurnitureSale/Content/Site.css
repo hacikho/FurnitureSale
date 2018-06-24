@@ -29,24 +29,37 @@ textarea {
     }
 
 #detail img {
-    width: 200px;
+    /*width: 200px;*/
 }
 
-.price{
-    font-size:larger;
+#detail .thumbnail-img {
+    widht: 100px;
+    height: 100px;
 }
 
-.admin{
-    padding-top:10px;
-    margin:10px;
-    font-size:large;
-    background-color:red !important;
+#detail .big-img {
+    widht: 300px;
+    height: 300px;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.price {
+    font-size: larger;
+}
+
+.admin {
+    padding-top: 10px;
+    margin: 10px;
+    font-size: large;
+    background-color: red !important;
 }
 
 .products {
     display: flex;
     flex-wrap: wrap;
-    
 }
 
 .product-card {
@@ -59,12 +72,14 @@ textarea {
 
 .product-image img {
     max-width: 100%;
-
+    text-align: center;
+    /*display: block;
+    margin: auto;*/
 }
 
 .product-info {
     margin-top: auto;
-    text-align:center;
+    text-align: center;
 }
 
 
@@ -74,3 +89,19 @@ textarea {
     }
 }
 
+
+img.zoom {
+    width: 150px;
+    height: 150px;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+}
+
+.transition {
+    -webkit-transform: scale(1.8);
+    -moz-transform: scale(1.8);
+    -o-transform: scale(1.8);
+    transform: scale(1.8);
+}
