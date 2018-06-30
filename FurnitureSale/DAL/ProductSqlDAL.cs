@@ -12,7 +12,7 @@ namespace FurnitureSale.DAL
     public class ProductSqlDAL: IProductDAL
     {
         private string connectionString = ConfigurationManager.ConnectionStrings["FurnitureSaleDB"].ConnectionString;
-        const string SQL_GetTop20Products = "SELECT TOP 20 products.* from products";
+        const string SQL_GetTop20Products = "SELECT TOP 10 products.* from products";
         const string SQL_InsertNewProduct = "INSERT INTO products VALUES(@ProductName, @ProductPrice, @ProductDescription, @ProductImageName1, @ProductImageName2, @ProductImageName3, @ProductCategoryID, @ProductQuantity)";
         const string SQL_GetProductById = "SELECT products.*, productcategories.* FROM products JOIN productcategories ON products.ProductCategoryID = productcategories.CategoryID WHERE products.ProductID =@id";
         const string SQL_EditProduct = "UPDATE products set ProductName = @ProductName, ProductPrice = @ProductPrice, ProductDescription = @ProductDescription, ProductImageName1 = @ProductImageName1, ProductCategoryID = @ProductCategoryID, " +

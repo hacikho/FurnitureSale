@@ -33,12 +33,12 @@ textarea {
 }
 
 #detail .thumbnail-img {
-    widht: 100px;
+    width: 100px;
     height: 100px;
 }
 
 #detail .big-img {
-    widht: 300px;
+    width: 300px;
     height: 300px;
 }
 
@@ -57,17 +57,45 @@ textarea {
     background-color: red !important;
 }
 
-.products {
+/*.products {
     display: flex;
     flex-wrap: wrap;
+    align-items: stretch;
 }
 
 .product-card {
     padding: 2%;
     flex-grow: 1;
     flex-basis: 21%;
-    display: flex; /* so child elements can use flexbox stuff too! */
-    flex-direction: column; /*This solves everything*/
+    display: flex; 
+    flex-direction: row;
+}*/
+
+
+.products {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.product-card {
+    background: tomato;
+    padding: 15px;
+    width: 200px;
+    height: 350px;
+    margin-top: 30px;
+    line-height: 150px;
+    color: white;
+    font-weight: bold;
+    font-size: 3em;
+    text-align: center;
 }
 
 .product-image img {
@@ -79,7 +107,7 @@ textarea {
 
 .product-info {
     margin-top: auto;
-    text-align: center;
+    text-align: left;
 }
 
 
@@ -105,3 +133,4 @@ img.zoom {
     -o-transform: scale(1.8);
     transform: scale(1.8);
 }
+
