@@ -92,27 +92,28 @@ else
                 <div class="product-info">
                     <h5>Name:@p.Name</h5>
                     <h5>Price:@p.Price.ToString("0.00")</h5>
-                    <h5>Category:</h5>
+                    <h5>Category:
                     @if (p.CategoryID == 1)
                     {
-                        <h5>LivingRoom</h5>
+                        <span>LivingRoom</span>
                     }
                     else if (p.CategoryID == 2)
                     {
-                        <h5>BedRoom</h5>
+                        <span>BedRoom</span>
                     }
                     else if (p.CategoryID == 3)
                     {
-                        <h5>Dining Room</h5>
+                        <span>Dining Room</span>
                     }
                     else if (p.CategoryID == 4)
                     {
-                        <h5>Kitchen</h5>
+                        <span>Kitchen</span>
                     }
                     else
                     {
-                        <h5>Babies & Kids</h5>
+                        <span>Babies & Kids</span>
                     }
+                    </h5>
                     <h5>Quantity:@p.Quantity</h5>
                 </div>
             </div>

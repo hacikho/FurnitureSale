@@ -42,6 +42,11 @@ textarea {
     height: 300px;
 }
 
+#detail {
+    background: tomato;
+    color: white;
+}
+
 .hide {
     visibility: hidden;
 }
@@ -108,6 +113,7 @@ textarea {
 .product-info {
     margin-top: auto;
     text-align: left;
+    
 }
 
 
