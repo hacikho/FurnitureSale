@@ -35,13 +35,33 @@ else
                         </a>
                     </div>
                     <div class="product-info">
-                        <h5>Product Name:@p.Name</h5>
-                        <h4>Product Price:@p.Price.ToString("0.00")</h4>
-                        <h4>Product Category ID:@p.CategoryID //This is for devs</h4>
-                        <h4>Product Quantity:@p.Quantity</h4>
-                    </div>
-                    <div class="fl-left">
-                        <a class="text-center" href="@Url.Action("EditProduct", "Products", new { id = p.Id })"><span><button type="button" class="btn">Edit</button></span></a>
+                        <h5>Name:@p.Name</h5>
+                        <h5>Price:@p.Price.ToString("0.00")</h5>
+                        <h5>
+                            Category:
+                            @if (p.CategoryID == 1)
+                            {
+                                <span>LivingRoom</span>
+                            }
+                            else if (p.CategoryID == 2)
+                            {
+                                <span>BedRoom</span>
+                            }
+                            else if (p.CategoryID == 3)
+                            {
+                                <span>Dining Room</span>
+                            }
+                            else if (p.CategoryID == 4)
+                            {
+                                <span>Kitchen</span>
+                            }
+                            else
+                            {
+                                <span>Babies & Kids</span>
+                            }
+                        </h5>
+                        <h5>Quantity:@p.Quantity</h5>
+                        <h5><a href="@Url.Action("EditProduct", "Products", new { id = p.Id })"><button type="button" class="btn">Edit</button></a></h5>
                     </div>
                 </div>
 
@@ -54,28 +74,48 @@ else
         <section class="products">
             @foreach (Product p in Model)
             {
-                <div class="product-card">
-                    <div class="product-image">
-                        <a href="@Url.Action("Detail", "Products", new { id=p.Id})">
-                            @if (!String.IsNullOrEmpty(p.ImageName1))
-                            {
-                                <img src="@Url.Content("~/images/"+p.ImageName1)" alt="@p.ImageName1" />
+            <div class="product-card">
+                <div class="product-image">
+                    <a href="@Url.Action("Detail", "Products", new { id=p.Id})">
+                        @if (!String.IsNullOrEmpty(p.ImageName1))
+                        {
+                            <img src="@Url.Content("~/images/"+p.ImageName1)" alt="@p.ImageName1" />
 
-                            }
-                            else
-                            {
-                                <img src="@Url.Content("~/images/no_image_available.svg")" alt="@p.Name" />
-                            }
+                        }
+                        else
+                        {
+                            <img src="@Url.Content("~/images/no_image_available.svg")" alt="@p.Name" />
+                        }
 
-                        </a>
-                    </div>
-                    <div class="product-info">
-                        <h5>Product Name:@p.Name</h5>
-                        <h4>Product Price:@p.Price.ToString("0.00")</h4>
-                        <h4>Product Category ID:@p.CategoryID //This is for devs</h4>
-                        <h4>Product Quantity:@p.Quantity</h4>
-                    </div>
+                    </a>
                 </div>
+                <div class="product-info">
+                    <h5>Name:@p.Name</h5>
+                    <h5>Price:@p.Price.ToString("0.00")</h5>
+                    <h5>Category:</h5>
+                    @if (p.CategoryID == 1)
+                    {
+                        <h5>LivingRoom</h5>
+                    }
+                    else if (p.CategoryID == 2)
+                    {
+                        <h5>BedRoom</h5>
+                    }
+                    else if (p.CategoryID == 3)
+                    {
+                        <h5>Dining Room</h5>
+                    }
+                    else if (p.CategoryID == 4)
+                    {
+                        <h5>Kitchen</h5>
+                    }
+                    else
+                    {
+                        <h5>Babies & Kids</h5>
+                    }
+                    <h5>Quantity:@p.Quantity</h5>
+                </div>
+            </div>
             }
 
         </section>
