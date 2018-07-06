@@ -10,6 +10,7 @@ namespace FurnitureSale.DAL
     public interface IProductDAL
     {
         List<Product> GetLast20Products();
+        List<Product> GetAllProducts();
         void SaveNewProduct(Product p);
         Product GetProduct(int id);
         //int EditProduct(int id, Product productToEdit);

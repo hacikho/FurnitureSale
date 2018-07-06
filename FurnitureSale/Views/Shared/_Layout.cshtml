@@ -35,10 +35,13 @@
                             @if (Session["Username"] != null)
                             {
                                 @*<span class="navbar-brand">
-                                    @Session["UserName"].ToString();
-                                </span>*@
+                @Session["UserName"].ToString();
+            </span>*@
                                 <span class="navbar-brand">
                                     @Html.ActionLink("Add New Product", "NewProduct", "Products")
+                                </span>
+                                <span class="navbar-brand">
+                                    @Html.ActionLink("Inventory", "Inventory", "Products")
                                 </span>
                                 <span class="navbar-brand">
                                     @Html.ActionLink("Log Out", "logout", "Login")

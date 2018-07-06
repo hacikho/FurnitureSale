@@ -33,6 +33,37 @@ namespace FurnitureSale.Controllers
             
         }
 
+        //[HttpGet]
+        //public ActionResult Inventory()
+        //{
+        //    if(SharedSession["UserName"] == "Admin")
+        //    {
+        //        return View("Inventory");
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Index", "Home");
+        //    }
+        //}
+
+        // GET: Inventory
+        [HttpGet]
+        public ActionResult Inventory()
+        {
+            //var products = dal.GetLast20Products();
+            //return View("Inventory", products);
+
+            if (SharedSession["UserName"] == "Admin")
+            {
+                var products = dal.GetLast20Products();
+                return View("Inventory", products);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
         [HttpPost]
         public ActionResult NewProduct(Product p, HttpPostedFileBase productImage, HttpPostedFileBase productImage2, HttpPostedFileBase productImage3)
         {

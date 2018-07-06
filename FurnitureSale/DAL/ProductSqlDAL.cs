@@ -13,6 +13,7 @@ namespace FurnitureSale.DAL
     {
         private string connectionString = ConfigurationManager.ConnectionStrings["FurnitureSaleDB"].ConnectionString;
         const string SQL_GetTop20Products = "SELECT TOP 10 products.* from products";
+        const string SQL_GetAllProducts = "SELECT products.* from products";
         const string SQL_InsertNewProduct = "INSERT INTO products VALUES(@ProductName, @ProductPrice, @ProductDescription, @ProductImageName1, @ProductImageName2, @ProductImageName3, @ProductCategoryID, @ProductQuantity)";
         const string SQL_GetProductById = "SELECT products.*, productcategories.* FROM products JOIN productcategories ON products.ProductCategoryID = productcategories.CategoryID WHERE products.ProductID =@id";
         const string SQL_EditProduct = "UPDATE products set ProductName = @ProductName, ProductPrice = @ProductPrice, ProductDescription = @ProductDescription, ProductImageName1 = @ProductImageName1, ProductCategoryID = @ProductCategoryID, " +
@@ -277,6 +278,49 @@ namespace FurnitureSale.DAL
             }
             return products;
         }
+
+
+        public List<Product> GetAllProducts()
+        {
+            List<Product> products = new List<Product>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(SQL_GetAllProducts, conn);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Product p = new Product();
+                        p.Id = Convert.ToInt32(reader["ProductID"]);
+                        p.Name = Convert.ToString(reader["ProductName"]);
+                        p.Price = Convert.ToDecimal(reader["ProductPrice"]);
+                        //p.Weight = Convert.ToSingle(reader["ProductWeight"]);
+                        //p.Quantity = Convert.ToInt32(reader["ProductQuantity"]);
+                        //p.Dimension = Convert.ToString(reader["ProductDimension"]);
+                        //p.Msrp = Convert.ToInt32(reader["ProductMsrp"]);
+                        p.Description = Convert.ToString(reader["ProductDescription"]);
+                        p.ImageName1 = Convert.ToString(reader["ProductImageName1"]);
+                        //p.ImageName2 = Convert.ToString(reader["ProductImage2"]);
+                        //p.ImageName3 = Convert.ToString(reader["ProductImage3"]);
+                        p.CategoryID = Convert.ToInt32(reader["ProductCategoryID"]);
+                        p.Quantity = Convert.ToInt32(reader["ProductQuantity"]);
+
+
+                        products.Add(p);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+            return products;
+        }
+
+
 
         public void SaveNewProduct(Product p)
         {
