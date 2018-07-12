@@ -13,9 +13,9 @@ CREATE TABLE products
 	image_name1     varchar(255) null,
 	image_name2     varchar(255) null,
 	image_name3     varchar(255) null,
-	categorId       int  not null,
+	categoryId       int  not null,
 	quantity        int  not null,
-	active_listing  bit  not null,
+	active_listing  varchar(10)  not null,
 	constraint fk_products_caegories foreign key (id) references categories(id),
 );
 
@@ -27,3 +27,5 @@ Insert into categories (name) values('Babies & Kids');
 
 --drop table  products;
 --drop table  categories;
+
+select * from products;

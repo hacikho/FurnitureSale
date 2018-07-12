@@ -22,6 +22,7 @@ else
                 <th>Price</th>
                 <th>Category</th>
                 <th>Quantity</th>
+                <th>Active Listing</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -53,6 +54,17 @@ else
                     }
                 </td>
                 <td>@p.Quantity</td>
+                <td>
+                    @*@if (p.ActiveListing == "Yes")
+                    {
+                        <span>Yes</span>
+                    }
+                    else if (p.ActiveListing == "No")
+                    {
+                        <span>No</span>
+                    }*@
+                    @p.ActiveListing
+                </td>
                 <td>
                     <a href="@Url.Action("EditProduct", "Products", new { id = p.Id })"><button type="button" class="btn">Edit</button></a>
                 </td>

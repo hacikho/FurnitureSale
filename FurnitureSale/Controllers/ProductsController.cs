@@ -55,7 +55,7 @@ namespace FurnitureSale.Controllers
 
             if (SharedSession["UserName"] == "Admin")
             {
-                var products = dal.GetLast20Products();
+                var products = dal.GetAllProducts();
                 return View("Inventory", products);
             }
             else
