@@ -33,18 +33,6 @@ namespace FurnitureSale.Controllers
             
         }
 
-        //[HttpGet]
-        //public ActionResult Inventory()
-        //{
-        //    if(SharedSession["UserName"] == "Admin")
-        //    {
-        //        return View("Inventory");
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("Index", "Home");
-        //    }
-        //}
 
         // GET: Inventory
         [HttpGet]
@@ -141,6 +129,22 @@ namespace FurnitureSale.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+
+        public ActionResult DeleteProduct(int id = 0)
+        {
+            Product p = dal.GetProduct(id);
+            if (p == null)
+            {
+                return HttpNotFound();
+            }
+            return View("DeleteProduct", p);
+        }
+        [HttpPost]
+        public ActionResult DeleteConfirm(int id) 
+        {
+            dal.DeleteConfirm(id);
+            return RedirectToAction("Inventory", "Products");
+        }
         
     } 
 }

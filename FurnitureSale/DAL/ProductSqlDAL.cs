@@ -9,7 +9,7 @@ using System.Data;
 
 namespace FurnitureSale.DAL
 {
-    public class ProductSqlDAL: IProductDAL
+    public class ProductSqlDAL:  IProductDAL
     {
         private string connectionString = ConfigurationManager.ConnectionStrings["FurnitureSaleDB"].ConnectionString;
         const string SQL_GetTop20Products = "SELECT TOP 10 products.* from products";
@@ -18,6 +18,7 @@ namespace FurnitureSale.DAL
         const string SQL_GetProductById = "SELECT products.*, categories.* FROM products JOIN categories ON products.categoryId = categories.Id WHERE products.Id =@id";
         const string SQL_EditProduct = "UPDATE products set name = @name, price = @price, description = @description, image_name1 = @image_name1, categoryId = @categoryId, " +
             "quantity = @quantity, active_listing = @active_listing WHERE Id = @Id";
+        const string SQL_DeleteProduct = "DELETE from products WHERE Id = @Id";
         const string SQL_GetLivingRoomProducts = "SELECT products.* FROM products WHERE products.categoryId = 1";
         const string SQL_GetBedRoomProducts = "SELECT products.* FROM products WHERE products.categoryId = 2";
         const string SQL_GetDiningRoomProducts = "SELECT products.* FROM products WHERE products.categoryId = 3";
@@ -427,6 +428,24 @@ namespace FurnitureSale.DAL
                 throw ex;
             }
             return EditedProduct.Id;
+        }
+
+        public void DeleteConfirm(int id)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(SQL_DeleteProduct, conn);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();                   
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
         }
     }
 }
