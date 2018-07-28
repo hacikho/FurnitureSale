@@ -20,6 +20,7 @@ namespace FurnitureSale.DAL
         List<Product> GetDiningRoomProducts();
         List<Product> GetKitchenProducts();
         List<Product> GetBabiesKidsProducts();
+        List<Product> GetOfficeAndOrganizerProducts();
         void DeleteConfirm(int id);
     }
 }

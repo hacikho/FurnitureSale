@@ -63,6 +63,14 @@ namespace FurnitureSale.Controllers
             return View("Kitchen", products);
         }
 
+        // get: kitchen
+        [HttpGet]
+        public ActionResult OfficeAndOrganizer()
+        {
+            var products = dal.GetOfficeAndOrganizerProducts();
+            return View("OfficeAndOrganizer", products);
+        }
+
 
     }
 }
