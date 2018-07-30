@@ -14,9 +14,9 @@ namespace FurnitureSale.DAL
         private string connectionString = ConfigurationManager.ConnectionStrings["FurnitureSaleDB"].ConnectionString;
         const string SQL_GetTop20Products = "SELECT TOP 10 products.* from products";
         const string SQL_GetAllProducts = "SELECT products.* from products";
-        const string SQL_InsertNewProduct = "INSERT INTO products VALUES(@name, @price, @description, @image_name1, @image_name2, @image_name3, @categoryId, @quantity, @active_listing)";
+        const string SQL_InsertNewProduct = "INSERT INTO products VALUES(@name, @price, @msrp, @description, @image_name1, @image_name2, @image_name3, @categoryId, @quantity, @active_listing)";
         const string SQL_GetProductById = "SELECT products.*, categories.* FROM products JOIN categories ON products.categoryId = categories.Id WHERE products.Id =@id";
-        const string SQL_EditProduct = "UPDATE products set name = @name, price = @price, description = @description, image_name1 = @image_name1, categoryId = @categoryId, " +
+        const string SQL_EditProduct = "UPDATE products set name = @name, price = @price, msrp=@msrp, description = @description, image_name1 = @image_name1, categoryId = @categoryId, " +
             "quantity = @quantity, active_listing = @active_listing WHERE Id = @Id";
         const string SQL_DeleteProduct = "DELETE from products WHERE Id = @Id";
         const string SQL_GetLivingRoomProducts = "SELECT products.* FROM products WHERE products.categoryId = 1";
@@ -49,6 +49,7 @@ namespace FurnitureSale.DAL
                         p.Id = Convert.ToInt32(reader["Id"]);
                         p.Name = Convert.ToString(reader["name"]);
                         p.Price = Convert.ToDecimal(reader["price"]);
+                        p.Msrp = Convert.ToDecimal(reader["msrp"]);
                         p.Description = Convert.ToString(reader["description"]);
                         p.ImageName1 = Convert.ToString(reader["image_name1"]);
                         p.ImageName2 = Convert.ToString(reader["image_name2"]);
@@ -82,6 +83,7 @@ namespace FurnitureSale.DAL
                         p.Id = Convert.ToInt32(reader["Id"]);
                         p.Name = Convert.ToString(reader["name"]);
                         p.Price = Convert.ToDecimal(reader["price"]);
+                        p.Msrp = Convert.ToDecimal(reader["msrp"]);
                         p.Description = Convert.ToString(reader["description"]);
                         p.ImageName1 = Convert.ToString(reader["image_name1"]);
                         p.ImageName2 = Convert.ToString(reader["image_name2"]);
@@ -116,6 +118,7 @@ namespace FurnitureSale.DAL
                         p.Id = Convert.ToInt32(reader["Id"]);
                         p.Name = Convert.ToString(reader["name"]);
                         p.Price = Convert.ToDecimal(reader["price"]);
+                        p.Msrp = Convert.ToDecimal(reader["msrp"]);
                         p.Description = Convert.ToString(reader["description"]);
                         p.ImageName1 = Convert.ToString(reader["image_name1"]);
                         p.ImageName2 = Convert.ToString(reader["image_name2"]);
@@ -151,6 +154,7 @@ namespace FurnitureSale.DAL
                         p.Id = Convert.ToInt32(reader["Id"]);
                         p.Name = Convert.ToString(reader["name"]);
                         p.Price = Convert.ToDecimal(reader["price"]);
+                        p.Msrp = Convert.ToDecimal(reader["msrp"]);
                         p.Description = Convert.ToString(reader["description"]);
                         p.ImageName1 = Convert.ToString(reader["image_name1"]);
                         p.ImageName2 = Convert.ToString(reader["image_name2"]);
@@ -185,6 +189,7 @@ namespace FurnitureSale.DAL
                         p.Id = Convert.ToInt32(reader["Id"]);
                         p.Name = Convert.ToString(reader["name"]);
                         p.Price = Convert.ToDecimal(reader["price"]);
+                        p.Msrp = Convert.ToDecimal(reader["msrp"]);
                         p.Description = Convert.ToString(reader["description"]);
                         p.ImageName1 = Convert.ToString(reader["image_name1"]);
                         p.ImageName2 = Convert.ToString(reader["image_name2"]);
@@ -219,6 +224,7 @@ namespace FurnitureSale.DAL
                         p.Id = Convert.ToInt32(reader["Id"]);
                         p.Name = Convert.ToString(reader["name"]);
                         p.Price = Convert.ToDecimal(reader["price"]);
+                        p.Msrp = Convert.ToDecimal(reader["msrp"]);
                         p.Description = Convert.ToString(reader["description"]);
                         p.ImageName1 = Convert.ToString(reader["image_name1"]);
                         p.ImageName2 = Convert.ToString(reader["image_name2"]);
@@ -252,6 +258,7 @@ namespace FurnitureSale.DAL
                         p.Id = Convert.ToInt32(reader["Id"]);
                         p.Name = Convert.ToString(reader["name"]);
                         p.Price = Convert.ToDecimal(reader["price"]);
+                        p.Msrp = Convert.ToDecimal(reader["msrp"]);
                         p.Description = Convert.ToString(reader["description"]);
                         p.ImageName1 = Convert.ToString(reader["image_name1"]);
                         p.ImageName2 = Convert.ToString(reader["image_name2"]);
@@ -287,6 +294,7 @@ namespace FurnitureSale.DAL
                         p.Id = Convert.ToInt32(reader["Id"]);
                         p.Name = Convert.ToString(reader["name"]);
                         p.Price = Convert.ToDecimal(reader["price"]);
+                        p.Msrp = Convert.ToDecimal(reader["msrp"]);
                         //p.Weight = Convert.ToSingle(reader["ProductWeight"]);
                         //p.Quantity = Convert.ToInt32(reader["ProductQuantity"]);
                         //p.Dimension = Convert.ToString(reader["ProductDimension"]);
@@ -326,6 +334,7 @@ namespace FurnitureSale.DAL
                         p.Id = Convert.ToInt32(reader["Id"]);
                         p.Name = Convert.ToString(reader["name"]);
                         p.Price = Convert.ToDecimal(reader["price"]);
+                        p.Msrp = Convert.ToDecimal(reader["msrp"]);
                         //p.Weight = Convert.ToSingle(reader["ProductWeight"]);
                         //p.Quantity = Convert.ToInt32(reader["ProductQuantity"]);
                         //p.Dimension = Convert.ToString(reader["ProductDimension"]);
@@ -360,6 +369,7 @@ namespace FurnitureSale.DAL
                     SqlCommand cmd = new SqlCommand(SQL_InsertNewProduct, conn);
                     cmd.Parameters.AddWithValue("@name", p.Name);
                     cmd.Parameters.AddWithValue("@price", p.Price);
+                    cmd.Parameters.AddWithValue("@msrp", p.Msrp);
                     cmd.Parameters.AddWithValue("@description", p.Description);
                     //First Image
                     if (String.IsNullOrEmpty(p.ImageName1))
@@ -421,6 +431,7 @@ namespace FurnitureSale.DAL
 
                     cmd.Parameters.AddWithValue("@name", EditedProduct.Name);
                     cmd.Parameters.AddWithValue("@price", EditedProduct.Price);
+                    cmd.Parameters.AddWithValue("@msrp", EditedProduct.Msrp);
                     cmd.Parameters.AddWithValue("@description", EditedProduct.Description);
                     //First Image
                     if (EditedProduct.ImageName1 == null)

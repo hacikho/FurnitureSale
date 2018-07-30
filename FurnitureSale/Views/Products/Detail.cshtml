@@ -66,35 +66,36 @@
         </div>*@
 
 
-    <div class="product-info">
-        <h5>Name:@Model.Name</h5>
-        <h5>Price:@Model.Price.ToString("0.00")</h5>
-        <h5>
-            Category:
-            @if (Model.CategoryID == 1)
-            {
-                <span>LivingRoom</span>
-            }
-            else if (Model.CategoryID == 2)
-            {
-                <span>BedRoom</span>
-            }
-            else if (Model.CategoryID == 3)
-            {
-                <span>Dining Room</span>
-            }
-            else if (Model.CategoryID == 4)
-            {
-                <span>Kitchen</span>
-            }
-            else
-            {
-                <span>Babies & Kids</span>
-            }
-        </h5>
-        <h5>Quantity:@Model.Quantity</h5>
-        <h5>Description:@Model.Description</h5>
-    </div>
+        <div class="product-info">
+            <h5>Name:@Model.Name</h5>
+            <h5>Price:@Model.Price.ToString("0.00")</h5>
+            <h5>MSRP:@p.Msrp.ToString("0.00")</h5>
+            <h5>
+                Category:
+                @if (Model.CategoryID == 1)
+                {
+                    <span>LivingRoom</span>
+                }
+                else if (Model.CategoryID == 2)
+                {
+                    <span>BedRoom</span>
+                }
+                else if (Model.CategoryID == 3)
+                {
+                    <span>Dining Room</span>
+                }
+                else if (Model.CategoryID == 4)
+                {
+                    <span>Kitchen</span>
+                }
+                else
+                {
+                    <span>Babies & Kids</span>
+                }
+            </h5>
+            <h5>Quantity:@Model.Quantity</h5>
+            <h5>Description:@Model.Description</h5>
+        </div>
 </div>
     
 

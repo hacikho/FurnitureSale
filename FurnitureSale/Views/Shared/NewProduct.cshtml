@@ -17,6 +17,10 @@
         @Html.TextAreaFor(m => m.Price, new { @class = "form-control", paceholder = "enter the price" })
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.Msrp)
+        @Html.TextAreaFor(m => m.Msrp, new { @class = "form-control", paceholder = "enter the MSRP price" })
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.Description)
         @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "8" })
     </div>
@@ -46,7 +50,7 @@
         @Html.TextBoxFor(m => m.ActiveListing, new { @class = "form-control", placeholder = "enter Yes or No" })
     </div>
 
-    
+
 
     <input type="submit" value="Save" name="action:NewProduct" />
 

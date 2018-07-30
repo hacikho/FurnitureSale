@@ -13,7 +13,7 @@ namespace FurnitureSale.Models
         public float Weight { get; set; }
         public int Quantity { get; set; }
         public string Dimension { get; set; }
-        public int Msrp { get; set; }
+        public decimal Msrp { get; set; }
         public string Description { get; set; }
         public string ImageName1 { get; set; }
         public string ImageName2 { get; set; }

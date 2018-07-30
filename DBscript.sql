@@ -9,6 +9,7 @@ CREATE TABLE products
 	id				int			primary key		identity(1, 1),
 	name		    varchar(50)	not null,
 	price		    money	not null,
+	msrp            money not null,
 	description     varchar(max) null,
 	image_name1     varchar(255) null,
 	image_name2     varchar(255) null,
@@ -25,7 +26,7 @@ Insert into categories (name) values('DiningRoom');
 Insert into categories (name) values('Kitchen');
 Insert into categories (name) values('Babies & Kids');
 
---drop table  products;
---drop table  categories;
+drop table  products;
+drop table  categories;
 
 select * from products;
