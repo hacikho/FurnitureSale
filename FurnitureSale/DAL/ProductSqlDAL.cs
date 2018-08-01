@@ -12,19 +12,19 @@ namespace FurnitureSale.DAL
     public class ProductSqlDAL:  IProductDAL
     {
         private string connectionString = ConfigurationManager.ConnectionStrings["FurnitureSaleDB"].ConnectionString;
-        const string SQL_GetTop20Products = "SELECT TOP 10 products.* from products";
+        const string SQL_GetTop20Products = "SELECT TOP 10 products.* from products where products.active_listing = 'Yes'";
         const string SQL_GetAllProducts = "SELECT products.* from products";
         const string SQL_InsertNewProduct = "INSERT INTO products VALUES(@name, @price, @msrp, @description, @image_name1, @image_name2, @image_name3, @categoryId, @quantity, @active_listing)";
         const string SQL_GetProductById = "SELECT products.*, categories.* FROM products JOIN categories ON products.categoryId = categories.Id WHERE products.Id =@id";
         const string SQL_EditProduct = "UPDATE products set name = @name, price = @price, msrp=@msrp, description = @description, image_name1 = @image_name1, categoryId = @categoryId, " +
             "quantity = @quantity, active_listing = @active_listing WHERE Id = @Id";
         const string SQL_DeleteProduct = "DELETE from products WHERE Id = @Id";
-        const string SQL_GetLivingRoomProducts = "SELECT products.* FROM products WHERE products.categoryId = 1";
-        const string SQL_GetBedRoomProducts = "SELECT products.* FROM products WHERE products.categoryId = 2";
-        const string SQL_GetDiningRoomProducts = "SELECT products.* FROM products WHERE products.categoryId = 3";
-        const string SQL_KitchenProducts = "SELECT products.* FROM products WHERE products.categoryId = 4";
-        const string SQL_BabiesKidsProducts = "SELECT products.* FROM products WHERE products.categoryId = 5";
-        const string SQL_OfficeAndOrganizerProducts = "SELECT products.* FROM products WHERE products.categoryId = 6";
+        const string SQL_GetLivingRoomProducts = "SELECT products.* FROM products WHERE products.categoryId = 1 and products.active_listing = 'Yes'";
+        const string SQL_GetBedRoomProducts = "SELECT products.* FROM products WHERE products.categoryId = 2 and products.active_listing = 'Yes'";
+        const string SQL_GetDiningRoomProducts = "SELECT products.* FROM products WHERE products.categoryId = 3 and products.active_listing = 'Yes'";
+        const string SQL_KitchenProducts = "SELECT products.* FROM products WHERE products.categoryId = 4 and products.active_listing = 'Yes'";
+        const string SQL_BabiesKidsProducts = "SELECT products.* FROM products WHERE products.categoryId = 5 and products.active_listing = 'Yes'";
+        const string SQL_OfficeAndOrganizerProducts = "SELECT products.* FROM products WHERE products.categoryId = 6 and products.active_listing = 'Yes'";
 
 
 

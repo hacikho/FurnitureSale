@@ -25,6 +25,7 @@ Insert into categories (name) values('BedRoom');
 Insert into categories (name) values('DiningRoom');
 Insert into categories (name) values('Kitchen');
 Insert into categories (name) values('Babies & Kids');
+Insert into categories (name) values('Office & Organizer');
 
 drop table  products;
 drop table  categories;
