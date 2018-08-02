@@ -45,9 +45,14 @@
         @Html.TextBoxFor(m => m.Quantity, new { @class = "form-control", placeholder = "enter quantity" })
     </div>
 
-    <div class="form-group">
+    @*<div class="form-group">
         @Html.LabelFor(m => m.ActiveListing)
         @Html.TextBoxFor(m => m.ActiveListing, new { @class = "form-control", placeholder = "enter Yes or No" })
+    </div>*@
+
+    <div>
+        @Html.RadioButtonFor(m => m.ActiveListing, "Yes") Yes
+        @Html.RadioButtonFor(m => m.ActiveListing, "No") No
     </div>
 
 
