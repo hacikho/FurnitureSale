@@ -17,7 +17,7 @@ CREATE TABLE products
 	categoryId       int  not null,
 	quantity        int  not null,
 	active_listing  varchar(10)  not null,
-	constraint fk_products_caegories foreign key (id) references categories(id),
+	constraint fk_products_caegories foreign key (categoryId) references categories(id),
 );
 
 Insert into categories (name) values('LivingRoom');
@@ -31,3 +31,4 @@ drop table  products;
 drop table  categories;
 
 select * from products;
+select * from categories;
