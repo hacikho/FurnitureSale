@@ -1,0 +1,91 @@
+﻿@using FurnitureSale.Models;
+@model Product
+
+@{
+    ViewBag.Title = "NewProduct";
+}
+
+<h2>NewProduct</h2>
+
+<form action="" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "enter name of the product" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Price)
+        @Html.TextAreaFor(m => m.Price, new { @class = "form-control", paceholder = "enter the price" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Msrp)
+        @Html.TextAreaFor(m => m.Msrp, new { @class = "form-control", paceholder = "enter the MSRP price" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description)
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "8" })
+    </div>
+
+    @*<div class="form-group">
+        @Html.LabelFor(m => m.CategoryID)
+        @Html.TextBoxFor(m => m.CategoryID, new { @class = "form-control", placeholder = "enter category id" })
+    </div>*@
+
+    <div>
+        @Html.LabelFor(m => m.CategoryID)
+        @Html.DropDownListFor(m => m.CategoryID,
+                  new List<SelectListItem> {
+                       new SelectListItem { Value = "1" , Text = "Living Room" },
+                       new SelectListItem { Value = "2" , Text = "Bed Room" },
+                       new SelectListItem { Value = "3" , Text = "Dining Room" },
+                       new SelectListItem { Value = "4" , Text = "Kitchen" },
+                       new SelectListItem { Value = "5" , Text = "Babies and Kids" },
+                       new SelectListItem { Value = "6" , Text = "Office and Organizers" }
+                    },
+                  new { @class= "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ImageName1)
+        <input type="file" name="productImage" class="form-control-file" accept=".png, .jpg" />
+        @Html.LabelFor(m => m.ImageName2)
+        <input type="file" name="productImage2" class="form-control-file" accept=".png, .jpg" />
+        @Html.LabelFor(m => m.ImageName3)
+        <input type="file" name="productImage3" class="form-control-file" accept=".png, .jpg" />
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(m => m.Quantity)
+            @Html.TextBoxFor(m => m.Quantity, new { @class = "form-control", placeholder = "enter quantity" })
+        </div>*@
+    <div>
+        @Html.LabelFor(m => m.Quantity)
+        @Html.DropDownListFor(m => m.Quantity,
+                  new List<SelectListItem> {
+                       new SelectListItem { Value = "0" , Text = "0" },
+                       new SelectListItem { Value = "1" , Text = "1" },
+                       new SelectListItem { Value = "2" , Text = "2" },
+                       new SelectListItem { Value = "3" , Text = "3" },
+                       new SelectListItem { Value = "4" , Text = "4" },
+                       new SelectListItem { Value = "5" , Text = "5" },
+                       new SelectListItem { Value = "6" , Text = "6" },
+                       new SelectListItem { Value = "7" , Text = "7" },
+                       new SelectListItem { Value = "8" , Text = "8" }
+                    },
+                  new { @class= "form-control" })
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(m => m.ActiveListing)
+            @Html.TextBoxFor(m => m.ActiveListing, new { @class = "form-control", placeholder = "enter Yes or No" })
+        </div>*@
+
+    <div>
+        @Html.RadioButtonFor(m => m.ActiveListing, "Yes") Yes
+        @Html.RadioButtonFor(m => m.ActiveListing, "No") No
+    </div>
+
+
+
+    <input type="submit" value="Save" name="action:NewProduct" />
+
+</form>
