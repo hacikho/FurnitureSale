@@ -86,11 +86,11 @@ else
                         <a href="@Url.Action("Detail", "Products", new { id=p.Id})">
                             @if (!String.IsNullOrEmpty(p.ImageName1))
                             {
-                                <img src="@Url.Content("~/images/"+p.ImageName1)" alt="@p.ImageName1" />
-
-                            }
-                            else
-                            {
+                                @*<img src="@Url.Content("~/images/"+p.ImageName1)" alt="@p.ImageName1" />*@
+                                <img src=Path.Combine(Server.MapPath("~/images/"), p.ImageName1) alt="@p.ImageName1" />
+                             }
+                             else
+                             {
                                 <img src="@Url.Content("~/images/no_image_available.svg")" alt="@p.Name" />
                             }
 
