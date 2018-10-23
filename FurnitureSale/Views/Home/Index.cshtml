@@ -24,8 +24,7 @@ else
                     <a href="@Url.Action("Detail", "Products", new { id=p.Id})">
                         @if (!String.IsNullOrEmpty(p.ImageName1))
                         {
-                            <img src="@Url.Content("~/images/"+p.ImageName1)" alt="@p.ImageName1" />
-
+                            <img src="@p.ImageName1" alt="@p.ImageName1" />
                         }
                         else
                         {
@@ -86,8 +85,7 @@ else
                         <a href="@Url.Action("Detail", "Products", new { id=p.Id})">
                             @if (!String.IsNullOrEmpty(p.ImageName1))
                             {
-                                <img src="@Url.Content("~/images/"+p.ImageName1)" alt="@p.ImageName1" />
-
+                                <img src="@p.ImageName1" alt="@p.ImageName1" />
                             }
                             else
                             {
@@ -131,15 +129,7 @@ else
                     </div>
                 </div>
             }
-
         </section>
-
     }
-
-
-
-
-
-
 }
 

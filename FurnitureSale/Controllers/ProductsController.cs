@@ -7,11 +7,18 @@ using FurnitureSale.Models;
 using FurnitureSale.DAL;
 using System.IO;
 using System.Web.Helpers;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 
 namespace FurnitureSale.Controllers
 {
+
     public class ProductsController : BaseController
     {
+        CloudinaryDotNet.Account account =
+    new CloudinaryDotNet.Account("hsaf29tj8", "434155939431716", "d-xsjMrt4vHfGPceFQRZEGh3sTY");
+        
+
         Product newProduct = new Product();
         private IProductDAL dal;
         public ProductsController(IProductDAL dal)
@@ -55,39 +62,40 @@ namespace FurnitureSale.Controllers
         [HttpPost]
         public ActionResult NewProduct(Product p, HttpPostedFileBase productImage, HttpPostedFileBase productImage2, HttpPostedFileBase productImage3)
         {
-            if(productImage != null)
-            {
-                string extension = Path.GetExtension(productImage.FileName);
-                string filename = Guid.NewGuid() + extension;
-                
-                string placeToSaveIt = Path.Combine(Server.MapPath("~/images/"), filename);
-
-                productImage.SaveAs(placeToSaveIt);
-                p.ImageName1 = filename;
+            CloudinaryDotNet.Cloudinary cloudinary = new CloudinaryDotNet.Cloudinary(account);
+            if (productImage != null)
+            {  
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new CloudinaryDotNet.FileDescription(productImage.FileName, productImage.InputStream),
+                };
+                var uploadResult = cloudinary.Upload(uploadParams);
+                string url = cloudinary.Api.UrlImgUp.BuildUrl(String.Format("{0}.{1}", uploadResult.PublicId, uploadResult.Format));
+                p.ImageName1 = url;
             }
 
             //second image
             if (productImage2 != null)
             {
-                string extension = Path.GetExtension(productImage2.FileName);
-                string filename = Guid.NewGuid() + extension;
-
-                string placeToSaveIt = Path.Combine(Server.MapPath("~/images/"), filename);
-
-                productImage2.SaveAs(placeToSaveIt);
-                p.ImageName2 = filename;
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new CloudinaryDotNet.FileDescription(productImage2.FileName, productImage2.InputStream),
+                };
+                var uploadResult = cloudinary.Upload(uploadParams);
+                string url = cloudinary.Api.UrlImgUp.BuildUrl(String.Format("{0}.{1}", uploadResult.PublicId, uploadResult.Format));
+                p.ImageName2 = url;
             }
 
             //third image
             if (productImage3 != null)
             {
-                string extension = Path.GetExtension(productImage3.FileName);
-                string filename = Guid.NewGuid() + extension;
-
-                string placeToSaveIt = Path.Combine(Server.MapPath("~/images/"), filename);
-
-                productImage3.SaveAs(placeToSaveIt);
-                p.ImageName3 = filename;
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new CloudinaryDotNet.FileDescription(productImage3.FileName, productImage3.InputStream),
+                };
+                var uploadResult = cloudinary.Upload(uploadParams);
+                string url = cloudinary.Api.UrlImgUp.BuildUrl(String.Format("{0}.{1}", uploadResult.PublicId, uploadResult.Format));
+                p.ImageName3 = url;
             }
 
             dal.SaveNewProduct(p);
@@ -112,18 +120,43 @@ namespace FurnitureSale.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditProduct(Product productToEdit, HttpPostedFileBase productImage)
+        public ActionResult EditProduct(Product productToEdit, HttpPostedFileBase productImage, HttpPostedFileBase productImage2, HttpPostedFileBase productImage3)
         {
+            CloudinaryDotNet.Cloudinary cloudinary = new CloudinaryDotNet.Cloudinary(account);
             //dal.EditProduct(productToEdit.Id, productToEdit);
             if (productImage != null)
             {
-                string extension = Path.GetExtension(productImage.FileName);
-                string filename = Guid.NewGuid() + extension;
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new CloudinaryDotNet.FileDescription(productImage.FileName, productImage.InputStream),
+                };
+                var uploadResult = cloudinary.Upload(uploadParams);
+                string url = cloudinary.Api.UrlImgUp.BuildUrl(String.Format("{0}.{1}", uploadResult.PublicId, uploadResult.Format));
+                productToEdit.ImageName1 = url;
+            }
 
-                string placeToSaveIt = Path.Combine(Server.MapPath("~/images/"), filename);
+            //second image
+            if (productImage2 != null)
+            {
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new CloudinaryDotNet.FileDescription(productImage2.FileName, productImage2.InputStream),
+                };
+                var uploadResult = cloudinary.Upload(uploadParams);
+                string url = cloudinary.Api.UrlImgUp.BuildUrl(String.Format("{0}.{1}", uploadResult.PublicId, uploadResult.Format));
+                productToEdit.ImageName2 = url;
+            }
 
-                productImage.SaveAs(placeToSaveIt);
-                productToEdit.ImageName1 = filename;
+            //third image
+            if (productImage3 != null)
+            {
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new CloudinaryDotNet.FileDescription(productImage3.FileName, productImage3.InputStream),
+                };
+                var uploadResult = cloudinary.Upload(uploadParams);
+                string url = cloudinary.Api.UrlImgUp.BuildUrl(String.Format("{0}.{1}", uploadResult.PublicId, uploadResult.Format));
+                productToEdit.ImageName3 = url;
             }
             dal.EditProduct(productToEdit);
             return RedirectToAction("Index", "Home");

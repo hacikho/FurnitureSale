@@ -8,11 +8,11 @@
 <h2>Product Detail</h2>
 <div id="detail">
     @*<h3>@Model.Name</h3>*@
-
     @*First Image*@
     @if (!String.IsNullOrEmpty(Model.ImageName1))
     {
-        <img class="zoom" src="@Url.Content("~/images/" + Model.ImageName1)" alt="@Model.Name" />
+        <img class="zoom" src="@Model.ImageName1" alt="@Model.ImageName1" />
+        @*<img class="zoom" src="@Url.Content("~/images/" + Model.ImageName1)" alt="@Model.Name" />*@
         @*<img class="big-img hide" src="@Url.Content("~/images/" + Model.ImageName1)" alt="@Model.Name" />*@
     }
     else
@@ -20,39 +20,38 @@
         @*<img class="thumbnail-img" src="@Url.Content("~/images/no_image_available.svg")" alt="@Model.Name" />*@
     }
 
-
-
     @*Second Image*@
     @if (!String.IsNullOrEmpty(Model.ImageName2))
     {
-        <img class="zoom" src="@Url.Content("~/images/" + Model.ImageName2)" alt="@Model.Name" />
+        <img class="zoom" src="@Model.ImageName2" alt="@Model.ImageName2" />
+        @*<img class="zoom" src="@Url.Content("~/images/" + Model.ImageName2)" alt="@Model.Name" />*@
     }
     else
     {
         <img class="zoom" src="@Url.Content("~/images/no_image_available.svg")" alt="@Model.Name" />
     }
-
-
 
     @*Third Image*@
     @if (!String.IsNullOrEmpty(Model.ImageName3))
     {
-        <img class="zoom" src="@Url.Content("~/images/" + Model.ImageName3)" alt="@Model.Name" />
+        <img class="zoom" src="@Model.ImageName3" alt="@Model.ImageName3" />
+        @*<img class="zoom" src="@Url.Content("~/images/" + Model.ImageName3)" alt="@Model.Name" />*@
     }
     else
     {
         <img class="zoom" src="@Url.Content("~/images/no_image_available.svg")" alt="@Model.Name" />
     }
 
-
     @*Big Image*@
     @if (!String.IsNullOrEmpty(Model.ImageName1))
     {
-        <img class="big-img hide" src="@Url.Content("~/images/" + Model.ImageName1)" alt="@Model.Name" />
+        <img class="big-img hide" src="@Model.ImageName1" alt="@Model.ImageName1" />
+        @*<img class="big-img hide" src="@Url.Content("~/images/" + Model.ImageName1)" alt="@Model.Name" />*@
     }
     @if (!String.IsNullOrEmpty(Model.ImageName2))
     {
-        <img class="big-img hide" src="@Url.Content("~/images/" + Model.ImageName2)" alt="@Model.Name" />
+        <img class="big-img hide" src="@Model.ImageName2" alt="@Model.ImageName2" />
+        @*<img class="big-img hide" src="@Url.Content("~/images/" + Model.ImageName2)" alt="@Model.Name" />*@
     }
     @*<h4>@Model.Price.ToString("0.00")</h4>
         <h4>Quantity:@Model.Quantity</h4>
@@ -65,37 +64,36 @@
             <p class="text-muted">@Model.Description</p>
         </div>*@
 
-
-        <div class="product-info">
-            <h5>Name:@Model.Name</h5>
-            <h5>Price:@Model.Price.ToString("0.00")</h5>
-            <h5>MSRP:@Model.Msrp.ToString("0.00")</h5>
-            <h5>
-                Category:
-                @if (Model.CategoryID == 1)
-                {
-                    <span>LivingRoom</span>
-                }
-                else if (Model.CategoryID == 2)
-                {
-                    <span>BedRoom</span>
-                }
-                else if (Model.CategoryID == 3)
-                {
-                    <span>Dining Room</span>
-                }
-                else if (Model.CategoryID == 4)
-                {
-                    <span>Kitchen</span>
-                }
-                else
-                {
-                    <span>Babies & Kids</span>
-                }
-            </h5>
-            <h5>Quantity:@Model.Quantity</h5>
-            <h5>Description:@Model.Description</h5>
-        </div>
+    <div class="product-info">
+        <h5>Name:@Model.Name</h5>
+        <h5>Price:@Model.Price.ToString("0.00")</h5>
+        <h5>MSRP:@Model.Msrp.ToString("0.00")</h5>
+        <h5>
+            Category:
+            @if (Model.CategoryID == 1)
+            {
+                <span>LivingRoom</span>
+            }
+            else if (Model.CategoryID == 2)
+            {
+                <span>BedRoom</span>
+            }
+            else if (Model.CategoryID == 3)
+            {
+                <span>Dining Room</span>
+            }
+            else if (Model.CategoryID == 4)
+            {
+                <span>Kitchen</span>
+            }
+            else
+            {
+                <span>Babies & Kids</span>
+            }
+        </h5>
+        <h5>Quantity:@Model.Quantity</h5>
+        <h5>Description:@Model.Description</h5>
+    </div>
 </div>
     
 
