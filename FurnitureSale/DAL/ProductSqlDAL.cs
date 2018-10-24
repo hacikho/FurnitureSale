@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -415,13 +415,6 @@ namespace FurnitureSale.DAL
           
         public int EditProduct(Product EditedProduct)
           {
-            //Product newProduct = GetProduct(EditedProduct.Id);
-            //newProduct.Name = EditedProduct.Name;
-            //newProduct.Price = EditedProduct.Price;
-            //newProduct.Description = EditedProduct.Description;
-            //newProduct.ImageName1 = EditedProduct.ImageName1;
-            //newProduct.CategoryID = EditedProduct.CategoryID;
-
             try
             {
                 using(SqlConnection conn = new SqlConnection(connectionString))
