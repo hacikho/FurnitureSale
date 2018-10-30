@@ -7,7 +7,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace FurnitureSale.DAL
+namespace FurnitureSale.DAL 
 {
     public class ProductSqlDAL:  IProductDAL
     {
