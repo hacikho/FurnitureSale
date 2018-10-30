@@ -16,7 +16,8 @@ namespace FurnitureSale.DAL
         const string SQL_GetAllProducts = "SELECT products.* from products";
         const string SQL_InsertNewProduct = "INSERT INTO products VALUES(@name, @price, @msrp, @description, @image_name1, @image_name2, @image_name3, @categoryId, @quantity, @active_listing)";
         const string SQL_GetProductById = "SELECT products.*, categories.* FROM products JOIN categories ON products.categoryId = categories.Id WHERE products.Id =@id";
-        const string SQL_EditProduct = "UPDATE products set name = @name, price = @price, msrp=@msrp, description = @description, image_name1 = @image_name1, categoryId = @categoryId, " +
+        const string SQL_EditProduct = "UPDATE products set name = @name, price = @price, msrp=@msrp, description = @description, image_name1 = @image_name1, image_name2 = @image_name2," +
+            "image_name3 = @image_name3, categoryId = @categoryId, " +
             "quantity = @quantity, active_listing = @active_listing WHERE Id = @Id";
         const string SQL_DeleteProduct = "DELETE from products WHERE Id = @Id";
         const string SQL_GetLivingRoomProducts = "SELECT products.* FROM products WHERE products.categoryId = 1 and products.active_listing = 'Yes'";
@@ -26,13 +27,9 @@ namespace FurnitureSale.DAL
         const string SQL_BabiesKidsProducts = "SELECT products.* FROM products WHERE products.categoryId = 5 and products.active_listing = 'Yes'";
         const string SQL_OfficeAndOrganizerProducts = "SELECT products.* FROM products WHERE products.categoryId = 6 and products.active_listing = 'Yes'";
 
-
-
-
         public Product GetProduct(int id)
         {
             Product product = null;
-
             try
             {
                 using(SqlConnection conn = new SqlConnection(connectionString))
@@ -40,9 +37,7 @@ namespace FurnitureSale.DAL
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(SQL_GetProductById, conn);
                     cmd.Parameters.AddWithValue("@id", id);
-
                     SqlDataReader reader = cmd.ExecuteReader();
-
                     if (reader.Read())
                     {
                         Product p = new Product();
@@ -287,7 +282,6 @@ namespace FurnitureSale.DAL
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(SQL_GetTop20Products, conn);
                     SqlDataReader reader = cmd.ExecuteReader();
-
                     while (reader.Read())
                     {
                         Product p = new Product();
@@ -295,14 +289,8 @@ namespace FurnitureSale.DAL
                         p.Name = Convert.ToString(reader["name"]);
                         p.Price = Convert.ToDecimal(reader["price"]);
                         p.Msrp = Convert.ToDecimal(reader["msrp"]);
-                        //p.Weight = Convert.ToSingle(reader["ProductWeight"]);
-                        //p.Quantity = Convert.ToInt32(reader["ProductQuantity"]);
-                        //p.Dimension = Convert.ToString(reader["ProductDimension"]);
-                        //p.Msrp = Convert.ToInt32(reader["ProductMsrp"]);
                         p.Description = Convert.ToString(reader["description"]);
                         p.ImageName1 = Convert.ToString(reader["image_name1"]);
-                        //p.ImageName2 = Convert.ToString(reader["ProductImage2"]);
-                        //p.ImageName3 = Convert.ToString(reader["ProductImage3"]);
                         p.CategoryID = Convert.ToInt32(reader["categoryId"]);
                         p.Quantity = Convert.ToInt32(reader["quantity"]);
                         products.Add(p);
@@ -335,14 +323,8 @@ namespace FurnitureSale.DAL
                         p.Name = Convert.ToString(reader["name"]);
                         p.Price = Convert.ToDecimal(reader["price"]);
                         p.Msrp = Convert.ToDecimal(reader["msrp"]);
-                        //p.Weight = Convert.ToSingle(reader["ProductWeight"]);
-                        //p.Quantity = Convert.ToInt32(reader["ProductQuantity"]);
-                        //p.Dimension = Convert.ToString(reader["ProductDimension"]);
-                        //p.Msrp = Convert.ToInt32(reader["ProductMsrp"]);
                         p.Description = Convert.ToString(reader["description"]);
                         p.ImageName1 = Convert.ToString(reader["image_name1"]);
-                        //p.ImageName2 = Convert.ToString(reader["ProductImage2"]);
-                        //p.ImageName3 = Convert.ToString(reader["ProductImage3"]);
                         p.CategoryID = Convert.ToInt32(reader["categoryId"]);
                         p.Quantity = Convert.ToInt32(reader["quantity"]);
                         p.ActiveListing = Convert.ToString(reader["active_listing"]);
@@ -399,11 +381,8 @@ namespace FurnitureSale.DAL
                         cmd.Parameters.AddWithValue("@image_name3", p.ImageName3);
                     }
                     cmd.Parameters.AddWithValue("@categoryId", p.CategoryID);
-
                     cmd.Parameters.AddWithValue("@quantity", p.Quantity);
-
                     cmd.Parameters.AddWithValue("@active_listing", p.ActiveListing);
-
                     cmd.ExecuteNonQuery();
                     return;
                 }
@@ -421,13 +400,12 @@ namespace FurnitureSale.DAL
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(SQL_EditProduct, conn);
-
                     cmd.Parameters.AddWithValue("@name", EditedProduct.Name);
                     cmd.Parameters.AddWithValue("@price", EditedProduct.Price);
                     cmd.Parameters.AddWithValue("@msrp", EditedProduct.Msrp);
                     cmd.Parameters.AddWithValue("@description", EditedProduct.Description);
                     //First Image
-                    if (EditedProduct.ImageName1 == null)
+                    if (String.IsNullOrEmpty(EditedProduct.ImageName1))
                     {
                         cmd.Parameters.AddWithValue("@image_name1", DBNull.Value);
                     }
@@ -437,7 +415,7 @@ namespace FurnitureSale.DAL
                     }
 
                     //Second Image
-                    if (EditedProduct.ImageName2 == null)
+                    if (String.IsNullOrEmpty(EditedProduct.ImageName2))
                     {
                         cmd.Parameters.AddWithValue("@image_name2", DBNull.Value);
                     }
@@ -447,7 +425,7 @@ namespace FurnitureSale.DAL
                     }
 
                     //Third Image
-                    if (EditedProduct.ImageName3 == null)
+                    if (String.IsNullOrEmpty(EditedProduct.ImageName3))
                     {
                         cmd.Parameters.AddWithValue("@image_name3", DBNull.Value);
                     }

@@ -7,24 +7,20 @@
 
 <h2>Product Detail</h2>
 <div id="detail">
-    @*<h3>@Model.Name</h3>*@
     @*First Image*@
     @if (!String.IsNullOrEmpty(Model.ImageName1))
     {
         <img class="zoom" src="@Model.ImageName1" alt="@Model.ImageName1" />
-        @*<img class="zoom" src="@Url.Content("~/images/" + Model.ImageName1)" alt="@Model.Name" />*@
-        @*<img class="big-img hide" src="@Url.Content("~/images/" + Model.ImageName1)" alt="@Model.Name" />*@
     }
     else
     {
-        @*<img class="thumbnail-img" src="@Url.Content("~/images/no_image_available.svg")" alt="@Model.Name" />*@
+        <img class="zoom" src="@Url.Content("~/images/no_image_available.svg")" alt="@Model.Name" />
     }
 
     @*Second Image*@
     @if (!String.IsNullOrEmpty(Model.ImageName2))
     {
         <img class="zoom" src="@Model.ImageName2" alt="@Model.ImageName2" />
-        @*<img class="zoom" src="@Url.Content("~/images/" + Model.ImageName2)" alt="@Model.Name" />*@
     }
     else
     {
@@ -35,7 +31,6 @@
     @if (!String.IsNullOrEmpty(Model.ImageName3))
     {
         <img class="zoom" src="@Model.ImageName3" alt="@Model.ImageName3" />
-        @*<img class="zoom" src="@Url.Content("~/images/" + Model.ImageName3)" alt="@Model.Name" />*@
     }
     else
     {
@@ -46,23 +41,11 @@
     @if (!String.IsNullOrEmpty(Model.ImageName1))
     {
         <img class="big-img hide" src="@Model.ImageName1" alt="@Model.ImageName1" />
-        @*<img class="big-img hide" src="@Url.Content("~/images/" + Model.ImageName1)" alt="@Model.Name" />*@
     }
     @if (!String.IsNullOrEmpty(Model.ImageName2))
     {
         <img class="big-img hide" src="@Model.ImageName2" alt="@Model.ImageName2" />
-        @*<img class="big-img hide" src="@Url.Content("~/images/" + Model.ImageName2)" alt="@Model.Name" />*@
     }
-    @*<h4>@Model.Price.ToString("0.00")</h4>
-        <h4>Quantity:@Model.Quantity</h4>
-        <p class="text-muted">@Model.Description</p>*@
-    @*<div class="product-info">
-            <h5>Product Name:@Model.Name</h5>
-            <h4>Product Price:@Model.Price</h4>
-            <h4>Product Category ID:@Model.CategoryID //This is for devs</h4>
-            <h4>Product Quantity:@Model.Quantity</h4>
-            <p class="text-muted">@Model.Description</p>
-        </div>*@
 
     <div class="product-info">
         <h5>Name:@Model.Name</h5>

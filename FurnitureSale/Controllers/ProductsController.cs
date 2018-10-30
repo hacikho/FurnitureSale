@@ -82,8 +82,8 @@ namespace FurnitureSale.Controllers
                     File = new CloudinaryDotNet.FileDescription(productImage2.FileName, productImage2.InputStream),
                 };
                 var uploadResult = cloudinary.Upload(uploadParams);
-                string url = cloudinary.Api.UrlImgUp.BuildUrl(String.Format("{0}.{1}", uploadResult.PublicId, uploadResult.Format));
-                p.ImageName2 = url;
+                string url2 = cloudinary.Api.UrlImgUp.BuildUrl(String.Format("{0}.{1}", uploadResult.PublicId, uploadResult.Format));
+                p.ImageName2 = url2;
             }
 
             //third image
@@ -94,8 +94,8 @@ namespace FurnitureSale.Controllers
                     File = new CloudinaryDotNet.FileDescription(productImage3.FileName, productImage3.InputStream),
                 };
                 var uploadResult = cloudinary.Upload(uploadParams);
-                string url = cloudinary.Api.UrlImgUp.BuildUrl(String.Format("{0}.{1}", uploadResult.PublicId, uploadResult.Format));
-                p.ImageName3 = url;
+                string url3 = cloudinary.Api.UrlImgUp.BuildUrl(String.Format("{0}.{1}", uploadResult.PublicId, uploadResult.Format));
+                p.ImageName3 = url3;
             }
 
             dal.SaveNewProduct(p);
@@ -124,6 +124,7 @@ namespace FurnitureSale.Controllers
         {
             CloudinaryDotNet.Cloudinary cloudinary = new CloudinaryDotNet.Cloudinary(account);
             //dal.EditProduct(productToEdit.Id, productToEdit);
+            //productImage.InputStream.Dispose();
             if (productImage != null)
             {
                 var uploadParams = new ImageUploadParams()
@@ -133,18 +134,20 @@ namespace FurnitureSale.Controllers
                 var uploadResult = cloudinary.Upload(uploadParams);
                 string url = cloudinary.Api.UrlImgUp.BuildUrl(String.Format("{0}.{1}", uploadResult.PublicId, uploadResult.Format));
                 productToEdit.ImageName1 = url;
+
             }
 
             //second image
             if (productImage2 != null)
             {
-                var uploadParams = new ImageUploadParams()
+                var uploadParams2 = new ImageUploadParams()
                 {
                     File = new CloudinaryDotNet.FileDescription(productImage2.FileName, productImage2.InputStream),
                 };
-                var uploadResult = cloudinary.Upload(uploadParams);
-                string url = cloudinary.Api.UrlImgUp.BuildUrl(String.Format("{0}.{1}", uploadResult.PublicId, uploadResult.Format));
-                productToEdit.ImageName2 = url;
+                var uploadResult2 = cloudinary.Upload(uploadParams2);
+                string url2 = cloudinary.Api.UrlImgUp.BuildUrl(String.Format("{0}.{1}", uploadResult2.PublicId, uploadResult2.Format));
+                productToEdit.ImageName2 = url2;
+
             }
 
             //third image

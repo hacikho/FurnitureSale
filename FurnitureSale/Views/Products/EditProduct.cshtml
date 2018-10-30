@@ -25,11 +25,6 @@
         @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "8" })
     </div>
 
-    @*<div class="form-group">
-        @Html.LabelFor(m => m.CategoryID)
-        @Html.TextBoxFor(m => m.CategoryID, new { @class = "form-control", placeholder = "enter category id" })
-    </div>*@
-
     <div>
         @Html.LabelFor(m => m.CategoryID)
         @Html.DropDownListFor(m => m.CategoryID,
@@ -48,18 +43,12 @@
     <div class="form-group">
         @Html.LabelFor(m => m.ImageName1)
         <input type="file" name="productImage" class="form-control-file" accept=".png, .jpg" />
-
         @Html.LabelFor(m => m.ImageName2)
-        <input type="file" name="productImage" class="form-control-file" accept=".png, .jpg" />
-
+        <input type="file" name="productImage2" class="form-control-file" accept=".png, .jpg" />
         @Html.LabelFor(m => m.ImageName3)
-        <input type="file" name="productImage" class="form-control-file" accept=".png, .jpg" />
+        <input type="file" name="productImage3" class="form-control-file" accept=".png, .jpg" />
     </div>
 
-    @*<div class="form-group">
-            @Html.LabelFor(m => m.Quantity)
-            @Html.TextBoxFor(m => m.Quantity, new { @class = "form-control", placeholder = "enter quantity" })
-        </div>*@
 
     <div>
         @Html.LabelFor(m => m.Quantity)
@@ -77,11 +66,6 @@
                     },
                   new { @class= "form-control" })
     </div>
-
-    @*<div class="form-group">
-            @Html.LabelFor(m => m.ActiveListing)
-            @Html.TextBoxFor(m => m.ActiveListing, new { @class = "form-control", placeholder = "enter Yes or No" })
-        </div>*@
 
     <div>
         @Html.RadioButtonFor(m => m.ActiveListing, "Yes") Yes

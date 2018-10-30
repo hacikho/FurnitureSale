@@ -14,7 +14,7 @@ namespace FurnitureSale.DAL
         void SaveNewProduct(Product p);
         Product GetProduct(int id);
         //int EditProduct(int id, Product productToEdit);
-        int EditProduct(Product productRoEdit);
+        int EditProduct(Product productToEdit);
         List<Product> GetLivingRoomProducts();
         List<Product> GetBedRoomProducts();
         List<Product> GetDiningRoomProducts();
