@@ -1,13 +1,9 @@
 ﻿@using FurnitureSale.Models;
 @model List<Product>
-
 @{
     ViewBag.Title = "Kitchen";
 }
-
 <h2>Kitchen</h2>
-
-
 @if (Model.Count == 0)
 {
     <p>No product have been added yet</p>
@@ -24,14 +20,12 @@ else
                         <a href="@Url.Action("Detail", "Products", new { id=p.Id})">
                             @if (!String.IsNullOrEmpty(p.ImageName1))
                             {
-                                <img src="@Url.Content("~/images/"+p.ImageName1)" alt="@p.ImageName1" />
-
+                                <img src="@p.ImageName1" alt="@p.ImageName1" />
                             }
                             else
                             {
                                 <img src="@Url.Content("~/images/no_image_available.svg")" alt="@p.Name" />
                             }
-
                         </a>
                     </div>
                     <div class="product-info">
@@ -65,9 +59,7 @@ else
                         <h5><a href="@Url.Action("EditProduct", "Products", new { id = p.Id })"><button type="button" class="btn">Edit</button></a></h5>
                     </div>
                 </div>
-
             }
-
         </section>
     }
     else
@@ -80,14 +72,12 @@ else
                         <a href="@Url.Action("Detail", "Products", new { id=p.Id})">
                             @if (!String.IsNullOrEmpty(p.ImageName1))
                             {
-                                <img src="@Url.Content("~/images/"+p.ImageName1)" alt="@p.ImageName1" />
-
+                                <img src="@p.ImageName1" alt="@p.ImageName1" />
                             }
                             else
                             {
                                 <img src="@Url.Content("~/images/no_image_available.svg")" alt="@p.Name" />
                             }
-
                         </a>
                     </div>
                     <div class="product-info">
@@ -121,8 +111,6 @@ else
                     </div>
                 </div>
             }
-
         </section>
-
     }
 }
