@@ -12,51 +12,56 @@ else
 {
     if (Session["UserName"] == "Admin")
     {
-        <section class="products">
+        <section>
             @foreach (Product p in Model)
             {
-                <div class="product-card">
-                    <div class="product-image">
-                        <a href="@Url.Action("Detail", "Products", new { id=p.Id})">
-                            @if (!String.IsNullOrEmpty(p.ImageName1))
-                            {
-                                <img src="@p.ImageName1" alt="@p.ImageName1" />
-                            }
-                            else
-                            {
-                                <img src="@Url.Content("~/images/no_image_available.svg")" alt="@p.Name" />
-                            }
-                        </a>
+                <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+                    <div class="card-header">
+                        Category:
+                        @if (p.CategoryID == 1)
+                        {
+                            <span>LivingRoom</span>
+                        }
+                        else if (p.CategoryID == 2)
+                        {
+                            <span>BedRoom</span>
+                        }
+                        else if (p.CategoryID == 3)
+                        {
+                            <span>Dining Room</span>
+                        }
+                        else if (p.CategoryID == 4)
+                        {
+                            <span>Kitchen</span>
+                        }
+                        else if (p.CategoryID == 5)
+                        {
+                            <span>Babies & Kids</span>
+                        }
+                        else if (p.CategoryID == 6)
+                        {
+                            <span> Office & Organizers</span>
+                        }
                     </div>
-                    <div class="product-info">
-                        <h5>Name:@p.Name</h5>
-                        <h5>Price:@p.Price.ToString("0.00")</h5>
-                        <h5>MSRP:@p.Msrp.ToString("0.00")</h5>
-                        <h5>
-                            Category:
-                            @if (p.CategoryID == 1)
-                            {
-                                <span>LivingRoom</span>
-                            }
-                            else if (p.CategoryID == 2)
-                            {
-                                <span>BedRoom</span>
-                            }
-                            else if (p.CategoryID == 3)
-                            {
-                                <span>Dining Room</span>
-                            }
-                            else if (p.CategoryID == 4)
-                            {
-                                <span>Kitchen</span>
-                            }
-                            else
-                            {
-                                <span>Babies & Kids</span>
-                            }
-                        </h5>
-                        <h5>Quantity:@p.Quantity</h5>
-                        <h5><a href="@Url.Action("EditProduct", "Products", new { id = p.Id })"><button type="button" class="btn">Edit</button></a></h5>
+                    <div class="card-body">
+                        <div class="product-image">
+                            <a href="@Url.Action("Detail", "Products", new { id=p.Id})">
+                                @if (!String.IsNullOrEmpty(p.ImageName1))
+                                {
+                                    <img src="@p.ImageName1" alt="@p.ImageName1" />
+                                }
+                                else
+                                {
+                                    <img src="@Url.Content("~/images/no_image_available.svg")" alt="@p.Name" />
+                                }
+                            </a>
+                        </div>
+                        <h4 class="card-title">Name: @p.Name</h4>
+                        <h5 class="card-title">Price: @p.Price.ToString("0.00") </h5>
+                        <h5 class="card-title">MSRP: @p.Msrp.ToString("0.00")</h5>
+                        <h5 class="card-title">Quantity: @p.Quantity</h5>
+                        <p class="card-text">@p.Description</p>
+                        <a href="@Url.Action("EditProduct", "Products", new { id = p.Id })"><button type="button" class="btn">Edit</button></a>
                     </div>
                 </div>
             }
@@ -64,50 +69,55 @@ else
     }
     else
     {
-        <section class="products">
+        <section>
             @foreach (Product p in Model)
             {
-                <div class="product-card">
-                    <div class="product-image">
-                        <a href="@Url.Action("Detail", "Products", new { id=p.Id})">
-                            @if (!String.IsNullOrEmpty(p.ImageName1))
-                            {
-                                <img src="@p.ImageName1" alt="@p.ImageName1" />
-                            }
-                            else
-                            {
-                                <img src="@Url.Content("~/images/no_image_available.svg")" alt="@p.Name" />
-                            }
-                        </a>
+                <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+                    <div class="card-header">
+                        Category:
+                        @if (p.CategoryID == 1)
+                        {
+                            <span>LivingRoom</span>
+                        }
+                        else if (p.CategoryID == 2)
+                        {
+                            <span>BedRoom</span>
+                        }
+                        else if (p.CategoryID == 3)
+                        {
+                            <span>Dining Room</span>
+                        }
+                        else if (p.CategoryID == 4)
+                        {
+                            <span>Kitchen</span>
+                        }
+                        else if (p.CategoryID == 5)
+                        {
+                            <span>Babies & Kids</span>
+                        }
+                        else if (p.CategoryID == 6)
+                        {
+                            <span> Office & Organizers</span>
+                        }
                     </div>
-                    <div class="product-info">
-                        <h5>Name:@p.Name</h5>
-                        <h5>Price:@p.Price.ToString("0.00")</h5>
-                        <h5>MSRP:@p.Msrp.ToString("0.00")</h5>
-                        <h5>
-                            Category:
-                            @if (p.CategoryID == 1)
-                            {
-                                <span>LivingRoom</span>
-                            }
-                            else if (p.CategoryID == 2)
-                            {
-                                <span>BedRoom</span>
-                            }
-                            else if (p.CategoryID == 3)
-                            {
-                                <span>Dining Room</span>
-                            }
-                            else if (p.CategoryID == 4)
-                            {
-                                <span>Kitchen</span>
-                            }
-                            else
-                            {
-                                <span>Babies & Kids</span>
-                            }
-                        </h5>
-                        <h5>Quantity:@p.Quantity</h5>
+                    <div class="card-body">
+                        <div class="product-image">
+                            <a href="@Url.Action("Detail", "Products", new { id=p.Id})">
+                                @if (!String.IsNullOrEmpty(p.ImageName1))
+                                {
+                                    <img src="@p.ImageName1" alt="@p.ImageName1" />
+                                }
+                                else
+                                {
+                                    <img src="@Url.Content("~/images/no_image_available.svg")" alt="@p.Name" />
+                                }
+                            </a>
+                        </div>
+                        <h4 class="card-title">Name: @p.Name</h4>
+                        <h5 class="card-title">Price: @p.Price.ToString("0.00") </h5>
+                        <h5 class="card-title">MSRP: @p.Msrp.ToString("0.00")</h5>
+                        <h5 class="card-title">Quantity: @p.Quantity</h5>
+                        <p class="card-text">@p.Description</p>
                     </div>
                 </div>
             }

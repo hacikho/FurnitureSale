@@ -6,77 +6,71 @@
 
 
 <h2>Product Detail</h2>
-<div id="detail">
-    @*First Image*@
-    @if (!String.IsNullOrEmpty(Model.ImageName1))
-    {
-        <img class="zoom" src="@Model.ImageName1" alt="@Model.ImageName1" />
-    }
-    else
-    {
-        <img class="zoom" src="@Url.Content("~/images/no_image_available.svg")" alt="@Model.Name" />
-    }
+<div class="card text-white bg-success mb-3" style="max-width: 60rem;">
+    <div class="card-header">
+        Category:
+        @if (Model.CategoryID == 1)
+        {
+            <span>LivingRoom</span>
+        }
+        else if (Model.CategoryID == 2)
+        {
+            <span>BedRoom</span>
+        }
+        else if (Model.CategoryID == 3)
+        {
+            <span>Dining Room</span>
+        }
+        else if (Model.CategoryID == 4)
+        {
+            <span>Kitchen</span>
+        }
+        else if (Model.CategoryID == 5)
+        {
+            <span>Babies & Kids</span>
+        }
+        else if (Model.CategoryID == 6)
+        {
+            <span> Office & Organizers</span>
+        }
+    </div>
+    <div class="card-body">
+        <div class="product-image">
+            <a href="@Url.Action("Detail", "Products", new { id=Model.Id})">
+                @if (!String.IsNullOrEmpty(Model.ImageName1))
+                {
+                    <img class="zoom" src="@Model.ImageName1" alt="@Model.ImageName1" />
+                }
+                else
+                {
+                    <img src="@Url.Content("~/images/no_image_available.svg")" alt="@Model.Name" />
+                }
 
-    @*Second Image*@
-    @if (!String.IsNullOrEmpty(Model.ImageName2))
-    {
-        <img class="zoom" src="@Model.ImageName2" alt="@Model.ImageName2" />
-    }
-    else
-    {
-        <img class="zoom" src="@Url.Content("~/images/no_image_available.svg")" alt="@Model.Name" />
-    }
+                @if (!String.IsNullOrEmpty(Model.ImageName2))
+                {
+                    <img class="zoom" src="@Model.ImageName2" alt="@Model.ImageName2" />
+                }
+                else
+                {
+                    <img src="@Url.Content("~/images/no_image_available.svg")" alt="@Model.Name" />
+                }
 
-    @*Third Image*@
-    @if (!String.IsNullOrEmpty(Model.ImageName3))
-    {
-        <img class="zoom" src="@Model.ImageName3" alt="@Model.ImageName3" />
-    }
-    else
-    {
-        <img class="zoom" src="@Url.Content("~/images/no_image_available.svg")" alt="@Model.Name" />
-    }
-
-    @*Big Image*@
-    @if (!String.IsNullOrEmpty(Model.ImageName1))
-    {
-        <img class="big-img hide" src="@Model.ImageName1" alt="@Model.ImageName1" />
-    }
-    @if (!String.IsNullOrEmpty(Model.ImageName2))
-    {
-        <img class="big-img hide" src="@Model.ImageName2" alt="@Model.ImageName2" />
-    }
-
-    <div class="product-info">
-        <h5>Name:@Model.Name</h5>
-        <h5>Price:@Model.Price.ToString("0.00")</h5>
-        <h5>MSRP:@Model.Msrp.ToString("0.00")</h5>
-        <h5>
-            Category:
-            @if (Model.CategoryID == 1)
-            {
-                <span>LivingRoom</span>
-            }
-            else if (Model.CategoryID == 2)
-            {
-                <span>BedRoom</span>
-            }
-            else if (Model.CategoryID == 3)
-            {
-                <span>Dining Room</span>
-            }
-            else if (Model.CategoryID == 4)
-            {
-                <span>Kitchen</span>
-            }
-            else
-            {
-                <span>Babies & Kids</span>
-            }
-        </h5>
-        <h5>Quantity:@Model.Quantity</h5>
-        <h5>Description:@Model.Description</h5>
+                @if (!String.IsNullOrEmpty(Model.ImageName3))
+                {
+                    <img class="zoom" src="@Model.ImageName3" alt="@Model.ImageName3" />
+                }
+                else
+                {
+                    <img src="@Url.Content("~/images/no_image_available.svg")" alt="@Model.Name" />
+                }
+            </a>
+        </div>
+        <h4 class="card-title">Name: @Model.Name</h4>
+        <h5 class="card-title">Price: @Model.Price.ToString("0.00") </h5>
+        <h5 class="card-title">MSRP: @Model.Msrp.ToString("0.00")</h5>
+        <h5 class="card-title">Quantity: @Model.Quantity</h5>
+        <p class="card-text">@Model.Description</p>
     </div>
 </div>
-    
+
 
